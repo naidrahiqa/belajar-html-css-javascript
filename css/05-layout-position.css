@@ -1,0 +1,160 @@
+/* 
+═══════════════════════════════════════════════════════════
+W3SCHOOLS: CSS LAYOUT & POSITION
+═══════════════════════════════════════════════════════════
+
+DI BAB INI KAMU AKAN BELAJAR:
+1. Display Property (block, inline, none)
+2. Max-Width (Responsive dasar)
+3. Position Property (static, relative, fixed, absolute, sticky)
+4. Z-Index (Lapisan tumpukan elemen)
+*/
+
+
+/* ═══════════════════════════════════════════════
+   1. DISPLAY PROPERTY
+   ═══════════════════════════════════════════════ */
+
+/* 
+Mengatur bagaimana elemen ditampilkan.
+Values umum:
+- block: Baris baru, width 100% (contoh: div, p, h1)
+- inline: Satu baris, width menyesuaikan konten (contoh: span, a)
+- inline-block: Satu baris TAPI bisa set width/height
+- none: Menghilangkan elemen (hidden)
+*/
+
+li {
+    display: inline;
+    /* Membuat list (biasanya block) jadi berjejer ke samping */
+}
+
+.hidden {
+    display: none;
+    /* Elemen hilang dari layout (tempatnya juga hilang) */
+    /* Beda dengan visibility: hidden (tempatnya masih ada, cuma invisible) */
+}
+
+
+/* ═══════════════════════════════════════════════
+   2. MAX-WIDTH (RESPONSIVE)
+   ═══════════════════════════════════════════════ */
+
+/* 
+Masalah width biasa:
+Jika width: 500px, maka di layar HP (lebar 300px) akan muncul SCROLLBAR samping.
+
+Solusi max-width:
+Jika max-width: 500px, maka:
+- Di layar besar: Lebar 500px.
+- Di layar kecil: Lebar menyesuaikan layar (otomatis mengecil).
+*/
+
+div.ex1 {
+    width: 500px;
+    /* Bahaya di mobile */
+}
+
+div.ex2 {
+    max-width: 500px;
+    /* Aman di mobile */
+    margin: auto;
+    /* Posisi tengah */
+}
+
+
+/* ═══════════════════════════════════════════════
+   3. POSITION PROPERTY (PENTING!)
+   ═══════════════════════════════════════════════ */
+
+/* 
+Ada 5 jenis position:
+1. static (Default)
+2. relative
+3. fixed
+4. absolute
+5. sticky
+*/
+
+/* A. STATIC (DEFAULT) */
+/* Posisi normal sesuai urutan HTML. Top/Bottom/Left/Right TIDAK EFEK. */
+div.static {
+    position: static;
+}
+
+
+/* B. RELATIVE */
+/* Posisi normal, TAPI bisa digeser relatif dari posisi aslinya. */
+div.relative {
+    position: relative;
+    left: 30px;
+    /* Geser 30px dari kiri (posisi asli) */
+    border: 3px solid #73AD21;
+}
+
+
+/* C. FIXED */
+/* Posisi TETAP di layar browser (viewport).
+   Tidak ikut bergerak saat di-scroll.
+   Contoh: Navbar fix di atas, Chat button di pojok bawah. */
+div.fixed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    border: 3px solid red;
+}
+
+
+/* D. ABSOLUTE */
+/* Posisi relatif terhadap INDUK TERDEKAT yang punya posisi (relative/absolute/fixed).
+   Jika tidak ada induk berposisi, dia relatif terhadap <body>. */
+
+.parent {
+    position: relative;
+    /* Induk harus relative */
+    width: 400px;
+    height: 200px;
+}
+
+.child {
+    position: absolute;
+    /* Anak absolute */
+    top: 80px;
+    /* 80px dari atas INDUK */
+    right: 0;
+    /* 0px dari kanan INDUK */
+}
+
+
+/* E. STICKY */
+/* Hybrid: Awalnya relative, lalu jadi fixed saat di-scroll sampai titik tertentu.
+   Contoh: Header tabel yang nempel saat scroll. */
+div.sticky {
+    position: sticky;
+    top: 0;
+    /* Nempel di paling atas saat scroll mencapai dia */
+    background-color: green;
+    padding: 50px;
+    font-size: 20px;
+}
+
+
+/* ═══════════════════════════════════════════════
+   4. Z-INDEX (STACK ORDER)
+   ═══════════════════════════════════════════════ */
+
+/* 
+Mengatur tumpukan elemen (depan/belakang).
+Hanya bekerja pada elemen dengan position (relative/absolute/fixed/sticky).
+Angka besar = Di Depan.
+Angka kecil/negatif = Di Belakang.
+*/
+
+img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    /* Gambar ditaruh di belakang teks/elemen lain */
+}
