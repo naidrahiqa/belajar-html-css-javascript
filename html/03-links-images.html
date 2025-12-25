@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <!-- 
+        ═══════════════════════════════════════════════════════════
+        W3SCHOOLS: LINKS, IMAGES, FILE PATHS
+        ═══════════════════════════════════════════════════════════
+        
+        DI BAB INI KAMU AKAN BELAJAR:
+        1. Cara membuat hyperlink (link yang bisa diklik)
+        2. Cara menampilkan gambar di halaman web
+        3. Cara menggunakan file path (lokasi file)
+    -->
+
+    <h2>HTML Links</h2>
+
+    <!-- 
+        ═══ TAG <a> (ANCHOR/JANGKAR) ═══
+        
+        FUNGSI: Membuat hyperlink (link yang bisa diklik) ke halaman lain
+        
+        STRUKTUR:
+        <a href="URL_TUJUAN" target="CARA_BUKA">TEXT_YANG_DIKLIK</a>
+           │         │                 │                │
+           │         │                 │                └─ Text yang terlihat di halaman
+           │         │                 └─ Cara membuka link (tab baru/sama)
+           │         └─ URL/alamat tujuan (wajib ada!)
+           └─ Tag pembuka anchor
+        
+        ATRIBUT PENTING:
+        
+        1. href (hyperlink reference) = WAJIB ADA!
+           - Berisi URL/alamat tujuan yang akan dibuka
+           - Contoh: href="https://google.com"
+           - Tanpa href, <a> tidak akan berfungsi sebagai link
+        
+        2. target = Cara membuka link (opsional)
+           - _self   : Buka di tab yang SAMA (default/standar)
+           - _blank  : Buka di tab/window BARU
+           - _parent : Buka di frame parent
+           - _top    : Buka di window paling atas
+           
+        CONTOH KASUS:
+        - Link ke website lain? Gunakan target="_blank" agar user tidak meninggalkan website kamu
+        - Link internal/navigasi? Gunakan _self (atau kosongkan target)
+    -->
+    <p>
+        <!-- Contoh: Link ke website eksternal, buka di tab baru -->
+        <a href="https://www.w3schools.com/" target="_blank">Visit W3Schools!</a>
+        <!--  │                                  │               │
+              │                                  │               └─ Text yang diklik user
+              │                                  └─ Buka di tab BARU (karena _blank)
+              └─ Alamat website tujuan (URL lengkap)
+        -->
+    </p>
+
+    <!-- 
+        ═══ GAMBAR SEBAGAI LINK (IMAGE AS LINK) ═══
+        
+        KONSEP: Kamu bisa membuat gambar jadi clickable (bisa diklik)
+        CARANYA: Bungkus tag <img> dengan tag <a>
+        
+        STRUKTUR:
+        <a href="tujuan">
+            <img src="gambar.jpg" alt="deskripsi">
+        </a>
+        └─ Tag <a> membungkus <img>, sehingga gambar jadi link
+    -->
+    <a href="01-intro-basic.html">
+        <!-- Tag <a> di atas membungkus <img> di bawah -->
+        <img src="https://via.placeholder.com/150" alt="HTML Tutorial" style="width:42px;height:42px;">
+        <!--  │                    │                  │
+              │                    │                  └─ Inline CSS (ukuran gambar)
+              │                    └─ Alt text: Deskripsi gambar (WAJIB!)
+              └─ src: Lokasi/URL gambar
+        -->
+    </a>
+    <!-- Sekarang gambar bisa diklik! Klik → buka file 01-intro-basic.html -->
+
+
+    <h2>HTML Images</h2>
+    <!--
+        ═══ TAG <img> (IMAGE/GAMBAR) ═══
+        
+        FUNGSI: Menampilkan gambar di halaman web
+        
+        PENTING! Tag <img> adalah SELF-CLOSING tag (tidak punya tag penutup)
+        Format: <img src="..." alt="...">  ← TIDAK perlu </img>
+        
+        CARA KERJA:
+        - Tag <img> TIDAK memasukkan gambar ke dalam HTML
+        - Tag <img> hanya membuat "ruang kosong" untuk menampilkan gambar
+        - Browser akan mengambil (download) gambar dari 'src' dan menampilkannya di ruang tersebut
+        
+        ATRIBUT WAJIB:
+        
+        1. src (source) = Lokasi gambar (WAJIB!)
+           - Bisa URL internet: src="https://example.com/gambar.jpg"
+           - Bisa file lokal: src="folder/gambar.jpg"
+           - Tanpa src, tidak ada gambar yang ditampilkan
+        
+        2. alt (alternative text) = Deskripsi gambar (WAJIB!)
+           - Ditampilkan jika gambar gagal load
+           - Dibaca oleh screen reader untuk tuna netra
+           - Penting untuk SEO (Google search)
+           - Contoh bagus: alt="Kucing lucu bermain bola"
+           - Contoh buruk: alt="gambar" (tidak deskriptif)
+        
+        ATRIBUT OPSIONAL:
+        
+        3. width = Lebar gambar (dalam pixel)
+        4. height = Tinggi gambar (dalam pixel)
+           - Sebaiknya diisi agar browser bisa reserve space
+           - Mencegah layout shift (halaman meloncat saat gambar load)
+    -->
+    <img src="https://via.placeholder.com/300" alt="Gambar Placeholder" width="300" height="300">
+    <!--  │                        │                   │        │
+          │                        │                   │        └─ Tinggi: 300px
+          │                        │                   └─ Lebar: 300px
+          │                        └─ Deskripsi: "Gambar Placeholder"
+          └─ URL gambar dari internet (placeholder service)
+    -->
+
+
+    <h2>HTML File Paths</h2>
+    <!--
+        ═══ FILE PATHS (LOKASI FILE) ═══
+        
+        File path adalah "alamat/lokasi" file di komputer/server
+        Penting untuk: <img>, <a>, <link>, <script>, dll
+        
+        ADA 2 JENIS FILE PATH:
+        
+        ┌─────────────────────────────────────────────────┐
+        │ 1. ABSOLUTE PATH (Path Mutlak/Lengkap)         │
+        └─────────────────────────────────────────────────┘
+        
+        CIRI: Alamat LENGKAP dari root/akar
+        
+        CONTOH:
+        - URL internet: src="https://example.com/images/photo.jpg"
+                        └─ Alamat lengkap dari internet
+        
+        - File lokal:   src="/images/photo.jpg"
+                        └─ Dari root folder website
+        
+        KAPAN DIGUNAKAN?
+        - Link ke website lain
+        - File di server berbeda
+        - File di root folder
+        
+        ┌─────────────────────────────────────────────────┐
+        │ 2. RELATIVE PATH (Path Relatif)                │
+        └─────────────────────────────────────────────────┘
+        
+        CIRI: Alamat RELATIF terhadap file HTML saat ini
+        
+        CONTOH STRUKTUR FOLDER:
+        
+        website/
+        ├── index.html           ← File HTML kamu (SAAT INI DI SINI)
+        ├── about.html
+        ├── picture.jpg          ← Gambar di folder yang SAMA
+        ├── images/
+        │   └── photo.jpg        ← Gambar di folder 'images'
+        └── pages/
+            └── contact.html
+        
+        CARA MENULIS RELATIVE PATH:
+        
+        1. File di FOLDER SAMA:
+           <img src="picture.jpg">
+           └─ Cari picture.jpg di folder yang sama dengan index.html
+        
+        2. File di SUB-FOLDER (folder di dalam):
+           <img src="images/photo.jpg">
+                     │       │
+                     │       └─ Nama file
+                     └─ Nama folder (masuk ke dalam)
+           └─ Masuk ke folder 'images', cari photo.jpg
+        
+        3. File di ROOT FOLDER (folder paling atas):
+           <img src="/images/photo.jpg">
+                     │
+                     └─ Garis miring di DEPAN = mulai dari root
+           └─ Mulai dari folder paling atas website
+        
+        4. File di FOLDER ATAS (naik satu tingkat):
+           <img src="../picture.jpg">
+                     │  │
+                     │  └─ Nama file
+                     └─ .. (titik dua) = naik 1 folder
+           └─ Keluar dari folder saat ini, cari picture.jpg
+           
+        5. NAIK 2 FOLDER:
+           <img src="../../picture.jpg">
+                     │   │
+                     │   └─ .. kedua = naik lagi
+                     └─ .. pertama = naik 1 folder
+        
+        KAPAN DIGUNAKAN?
+        - File dalam project yang sama
+        - Navigasi antar halaman internal
+        - Lebih flexible (bisa move project tanpa ubah path)
+        
+        TIPS MEMILIH PATH:
+        - Kalau file di project yang sama → Pakai RELATIVE
+        - Kalau link ke website lain → Pakai ABSOLUTE
+    -->
+    <pre>
+    CONTOH RELATIVE PATH:
+    
+    &lt;img src="picture.jpg"&gt;           ← File di folder yang SAMA
+    &lt;img src="images/picture.jpg"&gt;    ← File di folder 'images' (masuk ke dalam)
+    &lt;img src="/images/picture.jpg"&gt;   ← File di ROOT folder (paling atas)
+    &lt;img src="../picture.jpg"&gt;        ← File di folder ATAS (naik 1 tingkat)
+    </pre>
+
+</body>
+
+</html>
