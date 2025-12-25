@@ -1,0 +1,112 @@
+/* 
+═══════════════════════════════════════════════════════════
+W3SCHOOLS: CSS TEXT & FONTS
+═══════════════════════════════════════════════════════════
+
+DI BAB INI KAMU AKAN BELAJAR:
+1. Text Formatting (Color, Alignment, Decoration, Transform)
+2. Spacing (Line height, letter spacing)
+3. Fonts (Family, Style, Weight, Size)
+*/
+
+
+/* ═══════════════════════════════════════════════
+   1. TEXT PROPERTIES (MEMPERCANTIK TEKS)
+   ═══════════════════════════════════════════════ */
+
+body {
+    /* A. COLOR */
+    /* Mengubah warna teks */
+    color: blue;
+
+    /* B. TEXT ALIGNMENT (PERATAAN) */
+    /* left (default), center, right, justify (rata kiri-kanan) */
+    text-align: center;
+
+    /* C. TEXT DECORATION (GARIS) */
+    /* Popular values:
+       - none (menghilangkan garis bawah pada link)
+       - underline (garis bawah)
+       - line-through (coret)
+       - overline (garis atas)
+    */
+    text-decoration: none;
+
+    /* D. TEXT TRANSFORM (HURUF BESAR/KECIL) */
+    /* - uppercase : SEMUA JADI KAPITAL
+       - lowercase : semua jadi kecil
+       - capitalize : Huruf Depan Besar (Setiap Kata)
+    */
+    text-transform: uppercase;
+
+    /* E. TEXT INDENT */
+    /* Memberi jarak/lekuk pada baris PERTAMA paragraf */
+    text-indent: 50px;
+
+    /* F. LETTER SPACING */
+    /* Jarak antar huruf */
+    letter-spacing: 3px;
+
+    /* G. LINE HEIGHT */
+    /* Jarak antar baris (spasi baris). Default biasanya 1.0 - 1.2 */
+    line-height: 1.6;
+    /* Rekomendasi untuk bacaan enak: 1.5 atau 1.6 */
+
+    /* H. TEXT SHADOW */
+    /* Bayangan teks: x-offset y-offset blur radius color */
+    text-shadow: 2px 2px 5px red;
+}
+
+
+/* ═══════════════════════════════════════════════
+   2. FONT PROPERTIES (JENIS HURUF)
+   ═══════════════════════════════════════════════ */
+
+p {
+    /* A. FONT FAMILY (JENIS FONT) */
+    /* Tips: Selalu sediakan font cadangan (fallback).
+       "Times New Roman" = Font utama (jika ada)
+       Times             = Cadangan 1
+       serif             = Cadangan Generic (pasti ada)
+    */
+    font-family: "Times New Roman", Times, serif;
+    /* Generic families: 
+       - serif (ada 'ekor' di ujung huruf, cth: Times)
+       - sans-serif (tanpa ekor, modern, cth: Arial, Roboto)
+       - monospace (lebar huruf sama, cth: Consolas, Code)
+    */
+
+    /* B. FONT STYLE */
+    /* normal (default) atau italic (miring) */
+    font-style: italic;
+
+    /* C. FONT WEIGHT (KETEBALAN) */
+    /* Values: 
+       - normal (400)
+       - bold (700)
+       - bolder
+       - lighter
+       - Angka: 100-900
+    */
+    font-weight: bold;
+
+    /* D. FONT SIZE (UKURAN) */
+    /* px (pixel) = Absolut/Tetap.
+       em = Relatif terhadap parent font size.
+       rem = Relatif terhadap root html font size (Best Practice!).
+       % = Persentase.
+    */
+    font-size: 40px;
+}
+
+
+/* ═══════════════════════════════════════════════
+   3. WEB FONTS (GOOGLE FONTS)
+   ═══════════════════════════════════════════════
+   
+   Untuk menggunakan font keren dari Google:
+   1. Buka fonts.google.com
+   2. Pilih font, copy link <link>
+   3. Paste di <head> HTML
+   4. Pakai di CSS: font-family: 'Open Sans', sans-serif;
+*/
