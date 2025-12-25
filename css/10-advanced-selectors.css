@@ -1,0 +1,171 @@
+/* 
+═══════════════════════════════════════════════════════════
+W3SCHOOLS: CSS ADVANCED SELECTORS
+═══════════════════════════════════════════════════════════
+
+DI BAB INI KAMU AKAN BELAJAR:
+1. Attribute Selectors (Memilih elemen berdasarkan atribut)
+2. Combinators (Hubungan antar elemen: anak, saudara)
+3. Pseudo-classes (State/Urutan: hover, nth-child, not)
+4. Pseudo-elements (Bagian elemen: before, after, placeholder)
+*/
+
+
+/* ═══════════════════════════════════════════════
+   1. ATTRIBUTE SELECTORS ([...])
+   ═══════════════════════════════════════════════ */
+
+/* A. HAS ATTRIBUTE - Memilih elemen yg PUNYA atribut tsb */
+input[type] {
+    border: 1px solid blue;
+    /* Semua input yang punya atribut 'type' */
+}
+
+/* B. EXACT VALUE - Memilih elemen dengan nilai atribut PERSIS */
+input[type="text"] {
+    background: lightyellow;
+    /* Hanya input type="text" */
+}
+
+/* C. STARTS WITH (^=) - Nilai atribut DIAWALI dengan... */
+a[href^="https"] {
+    color: green;
+    /* Link aman (https) */
+}
+
+/* D. ENDS WITH ($=) - Nilai atribut DIAKHIRI dengan... */
+img[src$=".png"] {
+    border: 2px solid red;
+    /* File gambar PNG */
+}
+
+/* E. CONTAINS (*=) - Nilai atribut MENGANDUNG teks... */
+a[href*="google"] {
+    font-weight: bold;
+    /* Link yg mengandung kata 'google' */
+}
+
+
+/* ═══════════════════════════════════════════════
+   2. COMBINATORS (PENGHUBUNG)
+   ═══════════════════════════════════════════════ */
+
+/* A. DESCENDANT SELECTOR (spasi) - Anak, Cucu, Cicit... */
+div p {
+    color: red;
+    /* Semua <p> di dalam <div> (level berapapun) */
+}
+
+/* B. CHILD SELECTOR (>) - Hanya Anak Langsung */
+div>p {
+    color: blue;
+    /* Hanya <p> yang merupakan anak langsung dari <div> (bukan cucu) */
+}
+
+/* C. ADJACENT SIBLING SELECTOR (+) - Saudara Persis Setelahnya */
+h1+p {
+    font-size: 20px;
+    /* <p> yang langsung nempel setelah <h1> */
+}
+
+/* D. GENERAL SIBLING SELECTOR (~) - Semua Saudara Setelahnya */
+h1~p {
+    color: gray;
+    /* Semua <p> yang posisinya setelah <h1> (sejajar) */
+}
+
+
+/* ═══════════════════════════════════════════════
+   3. PSEUDO-CLASS SELECTORS (:)
+   ═══════════════════════════════════════════════ */
+
+/* A. STRUCTURAL (Urutan Anak) */
+
+/* :nth-child(n) - Memilih anak ke-n (independen tipe tag) */
+li:nth-child(1) {
+    background: gold;
+}
+
+/* Anak ke-1 */
+li:nth-child(odd) {
+    background: #f0f0f0;
+}
+
+/* Ganjil (1, 3, 5) */
+li:nth-child(even) {
+    background: white;
+}
+
+/* Genap (2, 4, 6) */
+li:nth-child(3n) {
+    color: red;
+}
+
+/* Kelipatan 3 (3, 6, 9) */
+
+/* :nth-of-type(n) - Memilih elemen ke-n dari TIPE yang sama */
+p:nth-of-type(2) {
+    font-weight: bold;
+}
+
+/* <p> kedua dalam parent */
+
+/* :first-child & :last-child */
+li:first-child {
+    border-top: 2px solid black;
+}
+
+li:last-child {
+    border-bottom: 2px solid black;
+}
+
+/* :only-child - Jika dia satu-satunya anak */
+p:only-child {
+    color: orange;
+}
+
+
+/* B. STATE & LOGIC */
+
+/* :not(selector) - Negasi (Kecuali) */
+li:not(.special) {
+    opacity: 0.5;
+    /* Semua li KECUALI yang class="special" */
+}
+
+/* :checked - Untuk checkbox/radio */
+input:checked {
+    box-shadow: 0 0 5px green;
+}
+
+
+/* ═══════════════════════════════════════════════
+   4. PSEUDO-ELEMENT SELECTORS (::)
+   ═══════════════════════════════════════════════ */
+/* Note: Pseudo-element membuat elemen "palsu" via CSS */
+
+/* ::before - Menambah konten DI DEPAN elemen */
+h2::before {
+    content: "★ ";
+    /* Menambah bintang sebelum setiap judul h2 */
+    color: gold;
+}
+
+/* ::after - Menambah konten DI BELAKANG elemen */
+.price::after {
+    content: " USD";
+    /* Menambah mata uang setelah nominal */
+    font-size: 0.8em;
+}
+
+/* ::selection - Style saat user memblok teks */
+::selection {
+    background: yellow;
+    color: black;
+}
+
+/* ::placeholder - Style teks placeholder input */
+input::placeholder {
+    color: #ccc;
+    font-style: italic;
+}
