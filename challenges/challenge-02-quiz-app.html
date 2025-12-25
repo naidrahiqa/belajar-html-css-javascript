@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Challenge 02: Quiz App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 50px;
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .options button:hover {
+            background: #f0f0f0;
+        }
+
+        .options button.correct {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .options button.wrong {
+            background: #e74c3c;
+            color: white;
+        }
+
+        #next {
+            display: none;
+            margin-top: 20px;
+            padding: 15px 30px;
+        }
+
+        .result {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="quiz-container">
+        <h2>Quiz JavaScript</h2>
+        <div id="quiz"></div>
+        <button id="next">Next Question</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Apa kepanjangan HTML?",
+                options: ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language"],
+                correct: 0
+            },
+            {
+                question: "CSS digunakan untuk?",
+                options: ["Logika", "Styling", "Database"],
+                correct: 1
+            },
+            {
+                question: "let vs const?",
+                options: ["Sama saja", "let bisa di-reassign, const tidak", "const lebih cepat"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            const quizDiv = document.getElementById('quiz');
+
+            quizDiv.innerHTML = `
+                <div class="question">
+                    <h3>Question ${currentQuestion + 1}/${questions.length}</h3>
+                    <p>${q.question}</p>
+                </div>
+                <div class="options">
+                    ${q.options.map((opt, i) =>
+                `<button onclick="checkAnswer(${i})">${opt}</button>`
+            ).join('')}
+                </div>
+            `;
+        }
+
+        function checkAnswer(selected) {
+            const q = questions[currentQuestion];
+            const buttons = document.querySelectorAll('.options button');
+
+            buttons.forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === q.correct) btn.classList.add('correct');
+                if (i === selected && i !== q.correct) btn.classList.add('wrong');
+            });
+
+            if (selected === q.correct) score++;
+
+            document.getElementById('next').style.display = 'block';
+        }
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+                document.getElementById('next').style.display = 'none';
+            } else {
+                showResult();
+            }
+        });
+
+        function showResult() {
+            document.getElementById('quiz').innerHTML = '';
+            document.getElementById('next').style.display = 'none';
+            document.getElementById('result').innerHTML = `
+                <h2>Quiz Selesai!</h2>
+                <p style="font-size: 2rem; margin: 20px 0;">Score: ${score}/${questions.length}</p>
+                <button onclick="location.reload()">Ulangi</button>
+            `;
+        }
+
+        loadQuestion();
+    </script>
+
+</body>
+
+</html>
