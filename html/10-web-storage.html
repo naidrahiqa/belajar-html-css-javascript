@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Web Storage API</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .box {
+            background: #f0f0f0;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    W3SCHOOLS: WEB STORAGE API
+    ═══════════════════════════════════════════════════════════
+
+    DI BAB INI KAMU AKAN BELAJAR:
+    1. LocalStorage (Penyimpanan Web Permanen)
+    2. SessionStorage (Penyimpanan Web Sementara)
+    3. Cara setItem, getItem, removeItem
+    4. Menyimpan Object/Array dengan JSON.stringify
+    -->
+
+
+    <!-- PENGANTAR WEB STORAGE
+    Sebelum HTML5, data disimpan di Cookies (kecil & lambat).
+    Web Storage lebih aman, kapasitas besar (5MB+), dan tidak memberatkan server.
+    Ada 2 tipe: LocalStorage & SessionStorage. 
+    -->
+
+    <h1>Web Storage API</h1>
+
+    <!-- 
+    1. LOCAL STORAGE
+    - Data tersimpan SELAMANYA (tidak ada waktu kadaluarsa).
+    - Browser ditutup/komputer restart -> Data MASIH ADA.
+    - Hanya hilang jika dihapus manual oleh user/script.
+    -->
+    <h2>1. LocalStorage</h2>
+    <p>Data PERMANEN (tetap ada walau browser ditutup).</p>
+
+    <div class="box">
+        <input type="text" id="localInput" placeholder="Ketik sesuatu...">
+        <button onclick="saveLocal()">Simpan ke LocalStorage</button>
+        <button onclick="loadLocal()">Load dari LocalStorage</button>
+        <button onclick="clearLocal()">Hapus LocalStorage</button>
+        <p>Data: <span id="localData" style="font-weight:bold">-</span></p>
+    </div>
+
+
+    <!-- 
+    2. SESSION STORAGE
+    - Data tersimpan SEMENTARA (selama tab/window terbuka).
+    - Tab ditutup -> Data HILANG.
+    - Cocok untuk data sensitif sesaat (misal form multipage).
+    -->
+    <h2>2. SessionStorage</h2>
+    <p>Data SEMENTARA (hilang saat tab ditutup).</p>
+
+    <div class="box">
+        <input type="text" id="sessionInput" placeholder="Ketik sesuatu...">
+        <button onclick="saveSession()">Simpan ke SessionStorage</button>
+        <button onclick="loadSession()">Load dari SessionStorage</button>
+        <p>Data: <span id="sessionData" style="font-weight:bold">-</span></p>
+    </div>
+
+
+    <!-- 
+    3. MENYIMPAN OBJECT (JSON)
+    LocalStorage HANYA BISA SIMPAN STRING.
+    Jika kita simpan object langsung, hasilnya "[object Object]".
+    
+    SOLUSI: 
+    - Simpan: JSON.stringify(object) -> String
+    - Load: JSON.parse(string) -> Object
+    -->
+    <h2>3. Menyimpan Object (JSON)</h2>
+    <div class="box">
+        <input type="text" id="username" placeholder="Username">
+        <input type="number" id="age" placeholder="Age">
+        <button onclick="saveUser()">Simpan User Object</button>
+        <button onclick="loadUser()">Load User Object</button>
+        <p id="userData" style="font-weight:bold">-</p>
+    </div>
+
+
+    <script>
+        /* ════════════════════════════════
+           LOCAL STORAGE LOGIC
+           Key-Value Pair (Kunci - Nilai)
+           ════════════════════════════════ */
+
+        function saveLocal() {
+            const value = document.getElementById('localInput').value;
+            // 1. setItem(key, value)
+            localStorage.setItem('myData', value);
+            alert('Disimpan! Coba tutup browser lalu buka lagi & klik load.');
+        }
+
+        function loadLocal() {
+            // 2. getItem(key)
+            const data = localStorage.getItem('myData');
+            // Cek jika null (belum ada data)
+            document.getElementById('localData').textContent = data ? data : 'Tidak ada data tersimpan';
+        }
+
+        function clearLocal() {
+            // 3. removeItem(key) -> Hapus satu
+            localStorage.removeItem('myData');
+            // localStorage.clear() -> Hapus SEMUA (Bahaya jika app lain pakai domain sama)
+            document.getElementById('localData').textContent = '-';
+            alert('Dihapus!');
+        }
+
+
+        /* ════════════════════════════════
+           SESSION STORAGE LOGIC
+           Sintaks sama persis, cuma ganti 'localStorage' jadi 'sessionStorage'
+           ════════════════════════════════ */
+
+        function saveSession() {
+            const value = document.getElementById('sessionInput').value;
+            sessionStorage.setItem('sessionData', value);
+            alert('Disimpan di SessionStorage! Coba tutup TAB ini lalu buka lagi.');
+        }
+
+        function loadSession() {
+            const data = sessionStorage.getItem('sessionData');
+            document.getElementById('sessionData').textContent = data || 'Tidak ada data (Mungkin tab baru?)';
+        }
+
+
+        /* ════════════════════════════════
+           MANIPULASI JSON
+           ════════════════════════════════ */
+
+        function saveUser() {
+            // Buat Object JS
+            const user = {
+                username: document.getElementById('username').value,
+                age: document.getElementById('age').value,
+                createdAt: new Date().toLocaleTimeString()
+            };
+
+            // Convert Object -> JSON String
+            // Karena Storage hanya terima teks
+            const jsonString = JSON.stringify(user);
+
+            localStorage.setItem('user', jsonString);
+            alert('User object disimpan sebagai string JSON!');
+        }
+
+        function loadUser() {
+            const userJSON = localStorage.getItem('user');
+
+            if (userJSON) {
+                // Convert JSON String -> Object JS
+                const user = JSON.parse(userJSON);
+
+                document.getElementById('userData').textContent =
+                    `Nama: ${user.username}, Umur: ${user.age} (Disimpan jam: ${user.createdAt})`;
+            } else {
+                document.getElementById('userData').textContent = 'Tidak ada data user';
+            }
+        }
+
+        // Auto-load saat halaman dimuat ulang
+        window.onload = () => {
+            loadLocal();
+            loadSession();
+        };
+    </script>
+
+</body>
+
+</html>
