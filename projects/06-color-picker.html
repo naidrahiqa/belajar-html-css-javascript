@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker - RGB to Hex Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: background-color 0.3s;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-group {
+            margin-bottom: 20px;
+        }
+
+        .slider-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #r {
+            accent-color: #e74c3c;
+        }
+
+        #g {
+            accent-color: #2ecc71;
+        }
+
+        #b {
+            accent-color: #3498db;
+        }
+
+        .value-display {
+            float: right;
+            font-weight: bold;
+            padding: 2px 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        .color-codes {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .color-codes p {
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PROJECT 6: COLOR PICKER -->
+    <!-- Konsep: Input range, RGB to Hex conversion, Template literals -->
+
+    <div class="container">
+        <h1>🎨 Color Picker</h1>
+
+        <div class="color-preview" id="colorPreview"></div>
+
+        <div class="slider-group">
+            <label>Red <span class="value-display" id="rVal">0</span></label>
+            <input type="range" id="r" min="0" max="255" value="0">
+        </div>
+
+        <div class="slider-group">
+            <label>Green <span class="value-display" id="gVal">0</span></label>
+            <input type="range" id="g" min="0" max="255" value="0">
+        </div>
+
+        <div class="slider-group">
+            <label>Blue <span class="value-display" id="bVal">0</span></label>
+            <input type="range" id="b" min="0" max="255" value="0">
+        </div>
+
+        <div class="color-codes">
+            <p id="rgbCode">rgb(0, 0, 0)</p>
+            <p id="hexCode">#000000</p>
+        </div>
+    </div>
+
+    <script>
+        const rSlider = document.getElementById('r');
+        const gSlider = document.getElementById('g');
+        const bSlider = document.getElementById('b');
+        const preview = document.getElementById('colorPreview');
+
+        function updateColor() {
+            const r = rSlider.value;
+            const g = gSlider.value;
+            const b = bSlider.value;
+
+            // Update value displays
+            document.getElementById('rVal').textContent = r;
+            document.getElementById('gVal').textContent = g;
+            document.getElementById('bVal').textContent = b;
+
+            // Update preview
+            const rgbColor = `rgb(${r}, ${g}, ${b})`;
+            preview.style.backgroundColor = rgbColor;
+
+            // RGB code
+            document.getElementById('rgbCode').textContent = rgbColor;
+
+            // Convert to HEX
+            const hexColor = rgbToHex(r, g, b);
+            document.getElementById('hexCode').textContent = hexColor;
+        }
+
+        function rgbToHex(r, g, b) {
+            // Convert number to hex string (0-255 -> 00-FF)
+            const toHex = (num) => {
+                const hex = Number(num).toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            };
+
+            return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
+        }
+
+        // Event listeners
+        rSlider.addEventListener('input', updateColor);
+        gSlider.addEventListener('input', updateColor);
+        bSlider.addEventListener('input', updateColor);
+
+        // Initial update
+        updateColor();
+    </script>
+
+</body>
+
+</html>
