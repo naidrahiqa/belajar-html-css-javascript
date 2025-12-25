@@ -1,0 +1,43 @@
+/* 
+    W3SCHOOLS: CSS SYNTAX & SELECTORS
+    
+    Syntax:
+    selector { property: value; }
+*/
+
+/* 1. SYNTAX */
+p {
+    color: red;
+    text-align: center;
+}
+
+/* 2. SELECTORS */
+
+/* ID Selector (#) -> Element unik */
+#para1 {
+    text-align: center;
+    color: red;
+}
+
+/* Class Selector (.) -> Bisa banyak element */
+.center {
+    text-align: center;
+    color: red;
+}
+
+/* Universal Selector (*) -> Semua element */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Grouping Selector (,) -> Beberapa element style sama */
+h1,
+h2,
+p {
+    text-align: center;
+    color: red;
+}
+
+/* 3. COMMENTS */
+/* Ini komentar CSS, gunakan untuk menjelaskan kode */
