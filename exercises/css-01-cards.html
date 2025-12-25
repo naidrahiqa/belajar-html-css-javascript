@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise: Card Components</title>
+    <style>
+        /* 
+            EXERCISE: Buat 3 Card Components
+            
+            INSTRUKSI:
+            1. Buat container dengan display: flex, gap: 20px
+            2. Setiap card punya:
+               - Width: 300px
+               - Padding: 20px
+               - Border-radius: 10px
+               - Box-shadow: 0 4px 8px rgba(0,0,0,0.1)
+            3. Card header punya background gradient
+            4. Hover effect: transform scale(1.05)
+            
+            BONUS: Buat card dengan gambar di atas
+        */
+
+        /* SOLUSI (uncomment untuk lihat) */
+        /*
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        */
+    </style>
+</head>
+
+<body>
+
+    <!-- HTML Structure (Jangan diubah) -->
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3>Card Title 1</h3>
+            </div>
+            <div class="card-body">
+                <p>This is a card description. Add your CSS styling!</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/300/200?random=1" alt="Image">
+            <div class="card-body">
+                <h3>Card with Image</h3>
+                <p>This card has an image at the top.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Card Title 3</h3>
+            </div>
+            <div class="card-body">
+                <p>Another card component example.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
