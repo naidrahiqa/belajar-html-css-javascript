@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    W3SCHOOLS: SEMANTIC ELEMENTS
+    ═══════════════════════════════════════════════════════════
+
+    DI BAB INI KAMU AKAN BELAJAR:
+    1. Apa itu Semantic Elements?
+    2. Header, Nav, Section, Article, Aside, Footer
+    3. Details & Summary
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    KONSEP SEMANTIC ELEMENTS
+    ═══════════════════════════════════════════════════════════
+    
+    NON-SEMANTIC: <div>, <span>
+    - Tidak menjelaskan isinya apa.
+    - Browser/Google tidak tahu ini bagian apa.
+    
+    SEMANTIC: <form>, <table>, <article>, <header>
+    - Jelas mendeskripsikan maknanya.
+    - Sangat bagus untuk SEO (Google paham struktur web).
+    - Bagus untuk Accessibility (Screen reader paham).
+    -->
+
+
+    <!-- 
+    1. HEADER (<header>)
+    Bagian kepala dari halaman atau section.
+    Isinya biasanya: Logo, Judul Utama, Navigasi.
+    -->
+    <header style="background-color: #ccc; padding: 20px;">
+        <h1>Ini Header Website</h1>
+    </header>
+
+
+    <!-- 
+    2. NAVIGATION (<nav>)
+    Tempat link navigasi utama.
+    -->
+    <nav style="background-color: #333; color: white; padding: 10px;">
+        <a href="#" style="color:white; margin-right:10px;">Home</a>
+        <a href="#" style="color:white; margin-right:10px;">About</a>
+        <a href="#" style="color:white; margin-right:10px;">Contact</a>
+    </nav>
+
+
+    <!-- 
+    3. SECTION (<section>)
+    Mengelompokkan konten yang se-tema.
+    Misal: Section "Features", Section "Testimonials".
+    -->
+    <section style="padding: 20px;">
+        <h2>Section Berita Terbaru</h2>
+        <p>Ini adalah sebuah section yang membungkus beberapa artikel.</p>
+
+
+        <!-- 
+        4. ARTICLE (<article>)
+        Konten yang berdiri sendiri (Independent).
+        Bisa didistribusikan terpisah.
+        Contoh: Postingan Blog, Komentar forum, Kartu berita.
+        -->
+        <article style="border: 1px solid #ddd; padding: 10px; margin: 10px 0;">
+            <h3>Judul Berita 1</h3>
+            <p>Ini adalah article. Article harus bisa berdiri sendiri (independen)
+                dari konten web lainnya.</p>
+        </article>
+
+        <article style="border: 1px solid #ddd; padding: 10px; margin: 10px 0;">
+            <h3>Judul Berita 2</h3>
+            <p>Artikel kedua dalam section ini.</p>
+        </article>
+    </section>
+
+
+    <!-- 
+    5. ASIDE (<aside>)
+    Konten sampingan / tidak langsung terkait konten utama.
+    Biasanya: Sidebar, Iklan, "Baca Juga".
+    -->
+    <aside style="background-color: #f1f1f1; padding: 20px;">
+        <h3>Sidebar / Aside</h3>
+        <p>Konten "aside" biasanya info tambahan atau related links.</p>
+    </aside>
+
+
+    <!-- 
+    6. FOOTER (<footer>)
+    Bagian kaki halaman.
+    Isinya: Copyright, Contact info, Sitemap, Social Media links.
+    -->
+    <footer style="background-color: #777; padding: 10px; text-align: center; color: white;">
+        <p>&copy; 2024 Website Saya. All rights reserved.</p>
+    </footer>
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    ELEMENT SEMANTIK LAINNYA
+    ═══════════════════════════════════════════════════════════
+    
+    <figure> & <figcaption> : Untuk gambar dan captionnya.
+    <time> : Untuk menandai waktu/tanggal (machine readable).
+    <details> & <summary> : Widget buka-tutup (accordion).
+    -->
+
+    <br>
+    <figure style="border:1px solid #ccc; width:fit-content; padding:5px;">
+        <img src="img_pulpit.jpg" alt="The Pulpit Rock" width="304" height="228">
+        <figcaption>Fig.1 - The Pulpit Rock, Norway.</figcaption>
+    </figure>
+
+    <br>
+
+    <details>
+        <summary>Klik untuk baca detail (details & summary)</summary>
+        <p>Ini adalah konten tersembunyi yang muncul saat diklik.
+            Sangat berguna untuk FAQ (Frequently Asked Questions).</p>
+    </details>
+
+</body>
+
+</html>
