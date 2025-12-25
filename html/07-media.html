@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    W3SCHOOLS: HTML MEDIA (VIDEO & AUDIO)
+    ═══════════════════════════════════════════════════════════
+
+    DI BAB INI KAMU AKAN BELAJAR:
+    1. Cara menampilkan VIDEO di website
+    2. Cara memutar AUDIO/Musik
+    3. Cara embed Video YOUTUBE
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    1. HTML VIDEO (<video>)
+    ═══════════════════════════════════════════════════════════
+    
+    ATRIBUT PENTING:
+    - controls : Menampilkan tombol play/pause/volume (WAJIB ADA!)
+    - width/height : Mengatur ukuran player.
+    - autoplay : Video otomatis main (Browser modern sering BLOCK ini jika ada suara).
+    - muted : Video main tanpa suara (Solusi agar autoplay jalan).
+    - loop : Video ulang dari awal setelah selesai.
+    - poster="img.jpg" : Gambar thumbnail sebelum diputar.
+    
+    FORMAT VIDEO YANG DISUPPORT:
+    1. MP4 (Best choice!) - Support semua browser
+    2. WebM 
+    3. Ogg
+    -->
+
+    <h2>HTML Video</h2>
+
+    <video width="320" height="240" controls autoplay muted>
+        <!-- Tag <source> memungkinkan kita sedia beberapa format -->
+        <!-- Browser akan pakai format pertama yang dia bisa mainkan -->
+        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+
+        <!-- Pesan Fallback jika browser sangat jadul -->
+        Your browser does not support the video tag.
+    </video>
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    2. HTML AUDIO (<audio>)
+    ═══════════════════════════════════════════════════════════
+    
+    Mirip dengan video, tapi tanpa layar visual.
+    
+    FORMAT AUDIO:
+    - MP3 (Best choice!)
+    - WAV
+    - Ogg
+    -->
+
+    <h2>HTML Audio</h2>
+
+    <audio controls>
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    3. YOUTUBE VIDEO
+    ═══════════════════════════════════════════════════════════
+    
+    Cara terbaik host video adalah upload ke YouTube, lalu embed.
+    Lebih hemat bandwidth server kita!
+    
+    CARANYA:
+    1. Buka video YouTube.
+    2. Klik Share -> Embed.
+    3. Copy kode Iframe.
+    -->
+
+    <h2>YouTube Video</h2>
+
+    <iframe width="420" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1">
+        <!-- ?autoplay=1 parameter agar auto play (tergantung browser policy) -->
+    </iframe>
+
+</body>
+
+</html>
