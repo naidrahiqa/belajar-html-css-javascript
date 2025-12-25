@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .myDiv {
+            border: 5px outset red;
+            background-color: lightblue;
+            text-align: center;
+            /* div adalah block, jadi width defaultnya 100% */
+        }
+
+        .mySpan {
+            color: blue;
+            font-weight: bold;
+            /* span adalah inline, jadi width/height/margin-top/bottom TIDAK EFEK */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    W3SCHOOLS: BLOCK vs INLINE, CLASS, ID, & IFRAME
+    ═══════════════════════════════════════════════════════════
+
+    DI BAB INI KAMU AKAN BELAJAR:
+    1. Konsep Block-level Elements (Kotak Besar)
+    2. Konsep Inline Elements (Dalam Baris)
+    3. Element <div> (Container Utama)
+    4. Element <span> (Text Wrapper)
+    5. Iframe (Website dalam Website)
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    1. BLOCK-LEVEL ELEMENTS
+    ═══════════════════════════════════════════════════════════
+    
+    SIFAT BLOCK ELEMENT:
+    1. Selalu mulai di BARIS BARU (New Line).
+    2. Mengambil LEBAR PENUH (Full Width) yang tersedia (kiri ke kanan).
+    3. Punya margin atas dan bawah.
+    
+    CONTOH BLOCK ELEMENTS:
+    - <div> (Paling sering dipakai)
+    - <h1> sampai <h6>
+    - <p> (Paragraf)
+    - <form>
+    - <header>, <footer>, <section> (Semantic)
+    - <ul>, <ol>, <li>
+    -->
+
+    <h2>Block-level Elements</h2>
+
+    <div style="border: 1px solid black">
+        Hello World (Div adalah Block)
+        <!-- Perhatikan kotak ini memanjang dari ujung kiri ke kanan -->
+    </div>
+
+    <div style="border: 1px solid black">
+        Hello World (Div adalah Block)
+        <!-- Div kedua ini otomatis turun ke bawah -->
+    </div>
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    2. INLINE ELEMENTS
+    ═══════════════════════════════════════════════════════════
+    
+    SIFAT INLINE ELEMENT:
+    1. TIDAK mulai di baris baru (Lanjut di baris yang sama).
+    2. Hanya mengambil lebar SEPERLUNYA (sesuai isi konten).
+    3. Width dan Height TIDAK BERFUNGSI di CSS untuk element inline.
+    4. Margin-top dan Margin-bottom TIDAK BERFUNGSI.
+    
+    CONTOH INLINE ELEMENTS:
+    - <span> (Paling sering dipakai untuk text styling)
+    - <a> (Link)
+    - <img> (Gambar) - *Img sedikit spesial (inline-block behavior)
+    - <b>, <i>, <strong>, <em>
+    -->
+
+    <h2>Inline Elements</h2>
+
+    <span>Ini span 1.</span>
+    <span>Ini span 2 (sebelahnya).</span>
+    <!-- Perhatikan mereka berjejer ke samping, tidak turun ke bawah -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    3. THE <div> ELEMENT
+    ═══════════════════════════════════════════════════════════
+    
+    div = division (bagian/divisi)
+    
+    FUNGSI:
+    - Sebagai CONTAINER (pembungkus) untuk elemen lain.
+    - Mengelompokkan elemen untuk distyle bersamaan pakai CSS.
+    - Kerangka utama layout website modern.
+    
+    NOTE: <div> tidak punya arti semantik khusus, hanya kotak kosong.
+    -->
+
+    <h2>The Div Element</h2>
+    <div class="myDiv">
+        <h2>Ini judul di dalam Div</h2>
+        <p>Ini paragraf di dalam div.</p>
+        <!-- Semua elemen di dalam sini backgroundnya jadi lightblue -->
+    </div>
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    4. THE <span> ELEMENT
+    ═══════════════════════════════════════════════════════════
+    
+    FUNGSI:
+    - Sebagai CONTAINER INLINE untuk teks/bagian kecil.
+    - Menandai bagian teks tertentu untuk diberi warna/style beda.
+    -->
+
+    <h2>The Span Element</h2>
+    <p>My mother has <span class="mySpan">blue</span> eyes.</p>
+    <!-- Hanya kata "blue" yang berubah gaya, sisanya tetap normal -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    5. HTML IFRAME
+    ═══════════════════════════════════════════════════════════
+    
+    iframe = Inline Frame
+    
+    FUNGSI: Menampilkan halaman web lain DI DALAM halaman web kita.
+    Sering dipakai untuk: Embed Youtube, Google Maps, Iklan.
+    
+    SYNTAX:
+    <iframe src="url" title="description"></iframe>
+    
+    ATRIBUT:
+    - src : URL halaman yang mau ditampilkan
+    - height & width : Ukuran jendela iframe
+    - title : Untuk accessibility (screen reader)
+    - frameborder="0" : Menghilangkan border (CSS: border:none)
+    -->
+
+    <h2>HTML Iframes</h2>
+    <iframe src="01-intro-basic.html" height="200" width="300" title="Iframe Example"></iframe>
+    <!-- Ini akan menampilkan file 01-intro-basic.html di dalam kotak kecil 300x200 -->
+
+</body>
+
+</html>
