@@ -1,0 +1,176 @@
+/* 
+═══════════════════════════════════════════════════════════
+W3SCHOOLS: CSS BOX MODEL
+═══════════════════════════════════════════════════════════
+
+DI BAB INI KAMU AKAN BELAJAR:
+1. Konsep Box Model (Content, Padding, Border, Margin)
+2. Box Sizing (PENTING! Solusi matematika CSS)
+3. Borders (Garis tepi)
+4. Margin vs Padding (Perbedaan mendasar)
+*/
+
+
+/* ═══════════════════════════════════════════════
+   1. KONSEP BOX MODEL
+   ═══════════════════════════════════════════════ */
+
+/* 
+Setiap elemen HTML pada dasarnya adalah KOTAK (BOX).
+Box Model adalah istilah untuk menyebut lapisan-lapisan kotak tersebut.
+
+URUTAN DARI DALAM KE LUAR:
+1. Content : Isi sebenarnya (text, gambar).
+2. Padding : Area bening disekitar content (jarak dalam).
+3. Border  : Garis tepi di sekeliling padding.
+4. Margin  : Area bening di LUAR border (jarak luar).
+
+VISUALISASI:
+[ MARGIN [ BORDER [ PADDING [ CONTENT ] ] ] ]
+*/
+
+div {
+    width: 300px;
+    /* Lebar CONTENT */
+    padding: 50px;
+    /* Jarak antara content & border */
+    border: 15px solid green;
+    /* Garis tepi */
+    margin: 20px;
+    /* Jarak dengan elemen lain */
+}
+
+
+/* ═══════════════════════════════════════════════
+   2. BOX SIZING (PENTING!)
+   ═══════════════════════════════════════════════ */
+
+/* 
+MASALAH MATEMATIKA CSS (Tanpa box-sizing: border-box):
+Jika width: 300px, padding: 50px, border: 15px...
+
+Total lebar asli di layar = 
+300px (content) + 50px (kiri) + 50px (kanan) + 15px (kiri) + 15px (kanan)
+= 430px!
+
+Ini MEMBINGUNGKAN saat layouting. Kita mau 300px ya 300px!
+
+SOLUSI MODERN: box-sizing: border-box;
+Dengan setting ini, padding dan border DIHITUNG DALAM width.
+Width 300px = Total lebar elemen.
+Content otomatis mengecil menyesuaikan sisa ruang.
+*/
+
+* {
+    /* Menerapkan ke SEMUA elemen (Universal Selector) */
+    box-sizing: border-box;
+    /* Mulai sekarang, width 300px = lebar kotak total. */
+}
+
+
+/* ═══════════════════════════════════════════════
+   3. BORDERS (GARIS TEPI)
+   ═══════════════════════════════════════════════ */
+
+/* Style border */
+p.dotted {
+    border-style: dotted;
+}
+
+/* Titik-titik */
+p.dashed {
+    border-style: dashed;
+}
+
+/* Garis putus */
+p.solid {
+    border-style: solid;
+}
+
+/* Garis biasa (paling umum) */
+p.double {
+    border-style: double;
+}
+
+/* Dua garis */
+
+/* Efek 3D (Jarang dipakai tapi ada) */
+p.groove {
+    border-style: groove;
+}
+
+p.ridge {
+    border-style: ridge;
+}
+
+/* BORDER SHORTHAND (Cara Cepat) */
+/* Urutan: width style color */
+h1 {
+    border: 5px solid red;
+    /* 
+    border-width: 5px;
+    border-style: solid;
+    border-color: red;
+    */
+}
+
+/* Border Sisi Tertentu */
+h2 {
+    border-bottom: 2px solid blue;
+    /* Garis bawah saja */
+    /* border-top, border-left, border-right */
+}
+
+
+/* ═══════════════════════════════════════════════
+   4. MARGIN VS PADDING
+   ═══════════════════════════════════════════════ */
+
+/* 
+MARGIN = JARAK LUAR
+- Mendorong elemen lain menjauh.
+- Transparan.
+- Bisa bernilai negatif (untuk tumpuk elemen).
+- Collapsing margins: Margin vertikal yang bertemu akan "melebur" jadi satu.
+
+PADDING = JARAK DALAM
+- Jarak antara isi (content) dengan pinggiran (border).
+- Mengambil warna background elemen.
+- Tidak bisa negatif.
+*/
+
+
+/* SHORTHAND PROPERTIES (Cara Menulis Singkat) */
+/* Urutan jarum jam: Top, Right, Bottom, Left (TRBL) */
+
+/* 4 Values: Top Right Bottom Left */
+p {
+    margin: 25px 50px 75px 100px;
+    /* Atas 25, Kanan 50, Bawah 75, Kiri 100 */
+}
+
+/* 3 Values: Top Left&Right Bottom */
+p {
+    padding: 25px 50px 75px;
+    /* Atas 25, Kanan&Kiri 50, Bawah 75 */
+}
+
+/* 2 Values: Top&Bottom Left&Right (PALING SERING) */
+p {
+    margin: 20px 50px;
+    /* Atas&Bawah 20, Kanan&Kiri 50 */
+}
+
+/* 1 Value: All sides */
+div {
+    padding: 20px;
+    /* Semua sisi 20px */
+}
+
+/* TRIK CENTER HORIZONTAL */
+/* Syarat: Harus punya width (bukan 100%) dan display block */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    /* 0 (atas bawah), auto (kiri kanan otomatis sama/tengah) */
+}
