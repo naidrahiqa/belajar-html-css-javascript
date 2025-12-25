@@ -1,0 +1,240 @@
+/* 
+═══════════════════════════════════════════════════════════
+W3SCHOOLS: CSS BEST PRACTICES & ARCHITECTURE
+═══════════════════════════════════════════════════════════
+
+DI BAB INI KAMU AKAN BELAJAR:
+1. CSS Variables (Custom Properties) - Untuk tema & konsistensi
+2. BEM (Block, Element, Modifier) - Naming Convention standar industri
+3. Utility Classes (Atomic CSS) - Cara cepat styling
+4. Performance Tips (Optimasi CSS)
+*/
+
+
+/* ═══════════════════════════════════════════════
+   1. STRUCTURE & ORGANIZATION (CSS VARIABLES)
+   ═══════════════════════════════════════════════ */
+
+/* :root adalah selector global (biasanya <html>). Tempat terbaik define variable. */
+:root {
+    /* PENAMAAN VARIABEL: --nama-variable */
+
+    /* Colors Code Palette (Mudah diganti satu file berubah semua) */
+    --color-primary: #3498db;
+    --color-secondary: #2ecc71;
+    --color-danger: #e74c3c;
+    --color-text: #333;
+    --color-bg: #fff;
+
+    /* Spacing System (8px Grid System - Standar UI Design) */
+    --spacing-xs: 0.5rem;
+    /* 8px */
+    --spacing-sm: 1rem;
+    /* 16px */
+    --spacing-md: 1.5rem;
+    /* 24px */
+    --spacing-lg: 2rem;
+    /* 32px */
+    --spacing-xl: 3rem;
+    /* 48px */
+
+    /* Typography */
+    --font-primary: 'Inter', system-ui, sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+}
+
+/* CARA PAKAI: var(--nama-variable) */
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-primary);
+}
+
+
+/* ═══════════════════════════════════════════════
+   2. BEM NAMING CONVENTION (Block Element Modifier)
+   ═══════════════════════════════════════════════ */
+
+/*
+BEM membantu menghindari konflik nama class dan membuat struktur HTML jelas.
+Format: .block__element--modifier
+*/
+
+/* BLOCK: Komponen berdiri sendiri */
+.card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* ELEMENT: Bagian dari Block (dipisah __) */
+.card__header {
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid #eee;
+    font-weight: bold;
+}
+
+.card__body {
+    padding: var(--spacing-sm);
+}
+
+.card__footer {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: #888;
+}
+
+/* MODIFIER: Variasi Style (dipisah --) */
+.card--highlighted {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card--dark {
+    background-color: #333;
+    color: white;
+}
+
+/* 
+CONTOH HTML:
+<div class="card card--highlighted">
+    <div class="card__header">Judul</div>
+    <div class="card__body">Isi konten...</div>
+</div>
+*/
+
+
+/* ═══════════════════════════════════════════════
+   3. UTILITY CLASSES (ATOMIC CSS)
+   ═══════════════════════════════════════════════ */
+
+/* Class kecil yang melakukan SATU hal saja. Sangat reusable. */
+
+/* Text Utilities */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-muted {
+    color: #777;
+}
+
+.text-danger {
+    color: var(--color-danger);
+}
+
+/* Spacing Utilities (Margin & Padding) */
+.m-0 {
+    margin: 0;
+}
+
+.mt-1 {
+    margin-top: var(--spacing-sm);
+}
+
+.mb-2 {
+    margin-bottom: var(--spacing-md);
+}
+
+.p-3 {
+    padding: var(--spacing-lg);
+}
+
+/* Display Utilities */
+.d-flex {
+    display: flex;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+
+/* ═══════════════════════════════════════════════
+   4. PERFORMANCE & MAINTENANCE TIPS
+   ═══════════════════════════════════════════════ */
+
+/* A. JANGAN GUNAKAN ID UNTUK STYLING */
+/* ❌ BAD: Sulit di-override karena specificity tinggi */
+#header {}
+
+/* ✅ GOOD: Gunakan class */
+.header {}
+
+
+/* B. HINDARI NESTING TERLALU DALAM */
+/* ❌ BAD: Browser berat baca dari kanan ke kiri */
+div.container ul.nav li.item a.link span.icon {}
+
+/* ✅ GOOD: Langsung ke class tujuan */
+.nav__icon {}
+
+
+/* C. ANIMASI PERFORMA TINGGI */
+.animate {
+    /* ❌ BAD: Mengubah layout (berat) */
+    /* top: 10px; */
+    /* width: 100px; */
+
+    /* ✅ GOOD: Mengubah komposit layer (GPU) */
+    transform: translateY(10px);
+    opacity: 0.8;
+    transition: transform 0.3s;
+}
+
+
+/* ============================================
+   5. MOBILE-FIRST RESPONSIVE
+   ============================================ */
+
+/*
+Tulislah CSS dasar untuk Mobile (layar kecil) dulu.
+Gunakan min-width untuk layar besar.
+*/
+
+.container {
+    width: 100%;
+    /* Mobile */
+    padding: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+        /* Tablet/Desktop */
+        margin: 0 auto;
+        /* Center */
+    }
+}
+
+
+/* ============================================
+   6. ACCESSIBILITY (A11Y)
+   ============================================ */
+
+/* Pastikan elemen interaktif punya state focus yang jelas */
+button:focus,
+a:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* JANGAN PERNAH disable outline tanpa ganti visual lain! */
+.no-outline:focus {
+    outline: none;
+    /* BAD untuk pengguna keyboard */
+}
