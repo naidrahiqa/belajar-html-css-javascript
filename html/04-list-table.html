@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* 
+        BASIC TABLE STYLING
+        Agar tabel terlihat ada garisnya.
+        CSS ini biasanya dipisah di file .css, tapi di sini kita pakai internal style untuk demo.
+        */
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            /* Garis tepi 1px solid hitam */
+            border-collapse: collapse;
+            /* Menggabungkan garis ganda menjadi satu garis tunggal */
+            padding: 5px;
+            /* Jarak antara text dan garis tepi */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    W3SCHOOLS: HTML LISTS & TABLES
+    ═══════════════════════════════════════════════════════════
+
+    DI BAB INI KAMU AKAN BELAJAR:
+    1. Unordered Lists (<ul>) - List dengan bullet points
+    2. Ordered Lists (<ol>) - List dengan nomor/angka
+    3. Description Lists (<dl>) - List istilah dan definisi
+    4. Tables (<table>) - Menampilkan data dalam baris dan kolom
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    1. UNORDERED LIST (LIST TIDAK BERURUTAN)
+    ═══════════════════════════════════════════════════════════
+    
+    TAG: <ul> (Unordered List)
+    ITEM TAG: <li> (List Item)
+    
+    DEFAULT STYLE: Bullet points (bulatan hitam kecil)
+    
+    KAPAN DIGUNAKAN:
+    - Daftar belanja
+    - Menu navigasi (navbar biasanya pakai <ul>)
+    - Fitur-fitur produk
+    - Apapun yang urutannya TIDAK penting
+    
+    STRUKTUR:
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+    </ul>
+    -->
+
+    <h2>Unordered List (Bullet)</h2>
+    <ul>
+        <li>Coffee</li>
+        <!-- <li> adalah anak langsung dari <ul> -->
+        <li>Tea</li>
+        <li>Milk</li>
+    </ul>
+
+    <!-- 
+    TIPS CUSTOMIZATION:
+    Kamu bisa ubah bentuk bullet dengan CSS:
+    <ul style="list-style-type: square;"> -> Kotak
+    <ul style="list-style-type: none;"> -> Hilangkan bullet (dipakai untuk navigation bar)
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    2. ORDERED LIST (LIST BERURUTAN)
+    ═══════════════════════════════════════════════════════════
+    
+    TAG: <ol> (Ordered List)
+    ITEM TAG: <li> (List Item)
+    
+    DEFAULT STYLE: Angka (1, 2, 3...)
+    
+    KAPAN DIGUNAKAN:
+    - Langkah-langkah resep/tutorial
+    - Ranking/Peringkat
+    - Daftar prioritas
+    - Apapun yang urutannya PENTING
+    -->
+
+    <h2>Ordered List (Number)</h2>
+    <ol>
+        <li>Coffee</li> <!-- Otomatis jadi nomor 1 -->
+        <li>Tea</li> <!-- Otomatis jadi nomor 2 -->
+        <li>Milk</li> <!-- Otomatis jadi nomor 3 -->
+    </ol>
+
+    <!-- 
+    ATRIBUT 'TYPE' PADA <ol>:
+    Mengubah jenis penomoran.
+    
+    type="1" -> Angka (Default): 1, 2, 3
+    type="A" -> Huruf Besar: A, B, C
+    type="a" -> Huruf Kecil: a, b, c
+    type="I" -> Romawi Besar: I, II, III
+    type="i" -> Romawi Kecil: i, ii, iii
+    -->
+
+    <h3>Ordered List with Type="A"</h3>
+    <ol type="A"> <!-- A, B, C -->
+        <li>Coffee</li>
+        <li>Tea</li>
+    </ol>
+
+    <!-- 
+    ATRIBUT 'START':
+    Mulai dari nomor tertentu.
+    <ol start="50"> -> Mulai dari 50, 51, 52...
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    3. DESCRIPTION LIST (LIST DESKRIPSI)
+    ═══════════════════════════════════════════════════════════
+    
+    TAG: <dl> (Description List)
+    TERM TAG: <dt> (Description Term) - Istilah/Nama
+    DESC TAG: <dd> (Description Details) - Penjelasan/Definisi
+    
+    KAPAN DIGUNAKAN:
+    - Kamus (Kata -> Arti)
+    - Metadata (Penulis -> Nama, Tahun -> 2024)
+    - FAQ (Pertanyaan -> Jawaban)
+    -->
+
+    <h2>Description List</h2>
+    <dl>
+        <dt>Coffee</dt> <!-- Istilah -->
+        <dd>- black hot drink</dd> <!-- Penjelasan (biasanya indent) -->
+
+        <dt>Milk</dt>
+        <dd>- white cold drink</dd>
+    </dl>
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    4. HTML TABLES (TABEL)
+    ═══════════════════════════════════════════════════════════
+    
+    TAG UTAMA: <table>
+    
+    STRUKTUR DASAR:
+    <table>
+      <tr> (Table Row - Baris)
+        <th>Header 1</th> (Table Header - Judul Kolom)
+        <th>Header 2</th>
+      </tr>
+      <tr>
+        <td>Data 1</td> (Table Data - Isi Cell)
+        <td>Data 2</td>
+      </tr>
+    </table>
+    
+    KOMPONEN:
+    - <tr> : Membungkus SATU baris horizontal.
+    - <th> : "Table Header". Teks tebal & tengah. Untuk judul kolom.
+    - <td> : "Table Data". Teks biasa & rata kiri. Untuk isi data.
+    - <caption> : Judul tabel (opsional, harus elemen pertama di bawah table).
+    
+    ATURAN:
+    - Jangan gunakan tabel untuk LAYOUT halaman (layout pakai CSS Flexbox/Grid).
+    - Gunakan tabel HANYA untuk "Tabular Data" (data baris & kolom).
+    -->
+
+    <h2>HTML Tables</h2>
+    <table style="width:100%">
+        <caption>Monthly Savings (Judul Tabel)</caption>
+
+        <!-- Baris Pertama: HEADER -->
+        <tr>
+            <th>Month</th>
+            <th>Savings</th>
+        </tr>
+
+        <!-- Baris Kedua: DATA -->
+        <tr>
+            <td>January</td>
+            <td>$100</td>
+        </tr>
+
+        <!-- Baris Ketiga: DATA -->
+        <tr>
+            <td>February</td>
+            <td>$50</td>
+        </tr>
+    </table>
+
+    <!-- 
+    MERGING CELLS (MENGGABUNGKAN CELL):
+    
+    colspan="n" -> Menggabungkan n kolom (Horizontal merge)
+    rowspan="n" -> Menggabungkan n baris (Vertical merge)
+    
+    Contoh: <td colspan="2">Total</td> (Akan lebar selebar 2 kolom)
+    -->
+
+</body>
+
+</html>
