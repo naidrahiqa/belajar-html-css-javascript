@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Canvas & SVG - Graphics</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        canvas,
+        svg {
+            border: 1px solid #ccc;
+            /* Border agar terlihat area gambarnya */
+            margin: 10px 0;
+            display: block;
+            /* Agar turun baris */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    W3SCHOOLS: HTML GRAPHICS (CANVAS & SVG)
+    ═══════════════════════════════════════════════════════════
+
+    DI BAB INI KAMU AKAN BELAJAR:
+    1. HTML <canvas> API (Gambar Raster/Pixel)
+    2. HTML <svg> (Gambar Vektor)
+    3. Perbedaan Canvas vs SVG
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    1. HTML CANVAS API (<canvas>)
+    ═══════════════════════════════════════════════════════════
+    
+    APA ITU CANVAS?
+    - Canvas adalah area kosong di HTML untuk menggambar grafik.
+    - Menggambar dilakukan via JAVASCRIPT.
+    - Pixel-based (Raster). Jika di-zoom pecah/blur.
+    - Cocok untuk: Game, Grafik Data real-time, Editing foto.
+    -->
+
+    <h2>1. HTML Canvas API</h2>
+    <p>Canvas adalah area gambar yang bisa dikontrol dengan JavaScript.</p>
+
+    <!-- 
+    Step 1: Siapkan elemen canvas
+    PENTING: Atur width & height di atribut HTML, bukan CSS.
+    Jika di CSS, isinya akan ter-stretch (distorsi).
+    -->
+    <canvas id="myCanvas" width="400" height="200" style="background: #f0f0f0;"></canvas>
+
+    <script>
+        /* MENGGAMBAR DI CANVAS */
+
+        // 1. Ambil elemen canvas
+        const canvas = document.getElementById('myCanvas');
+
+        // 2. Ambil Context (Alat Gambar / Kuas)
+        // '2d' adalah konteks gambar 2 dimensi.
+        const ctx = canvas.getContext('2d');
+
+        /* A. MENGGAMBAR PERSEGI (Rectangle) */
+        ctx.fillStyle = '#3498db'; // Set warna isi (Biru)
+        // fillRect(x, y, width, height)
+        // Koordinat (0,0) ada di pojok KIRI ATAS canvas.
+        ctx.fillRect(20, 20, 150, 100);
+
+        /* B. MENGGAMBAR LINGKARAN (Arc) */
+        ctx.beginPath(); // Mulai jalur baru (angkat kuas)
+        // arc(x, y, radius, startAngle, endAngle)
+        // Math.PI * 2 = Lingkaran penuh (360 derajat)
+        ctx.arc(300, 70, 50, 0, 2 * Math.PI);
+        ctx.fillStyle = '#e74c3c'; // Merah
+        ctx.fill(); // Isi warna penuh
+
+        /* C. MENGGAMBAR TEKS */
+        ctx.font = '20px Arial';
+        ctx.fillStyle = '#2ecc71'; // Hijau
+        ctx.fillText('Hello Canvas!', 50, 160); // fillText(text, x, y)
+
+        /* D. MENGGAMBAR GARIS */
+        ctx.beginPath();
+        ctx.moveTo(20, 180); // Titik awal
+        ctx.lineTo(380, 180); // Titik akhir
+        ctx.strokeStyle = "black"; // Warna garis
+        ctx.lineWidth = 2; // Ketebalan
+        ctx.stroke(); // Gambar garisnya
+    </script>
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    2. SVG (SCALABLE VECTOR GRAPHICS)
+    ═══════════════════════════════════════════════════════════
+    
+    APA ITU SVG?
+    - XML-based language untuk grafik 2D.
+    - Vektor: Berdasarkan rumus matematika (garis, kurva).
+    - RESOLUTION INDEPENDENT: Di-zoom sebesar apapun TIDAK PECAH.
+    - Setiap elemen adalah tag HTML (bisa di-style CSS & dikasih event JS).
+    - Cocok untuk: Logo, Icon, Peta, Grafik statis.
+    -->
+
+    <h2>2. SVG (Scalable Vector Graphics)</h2>
+    <p>SVG adalah grafik berbasis XML (bisa di-zoom tanpa blur).</p>
+
+    <!-- Container SVG -->
+    <svg width="400" height="200">
+        <!-- 
+        SHAPES DI SVG:
+        -->
+
+        <!-- Rectangle (Persegi) -->
+        <rect x="20" y="20" width="150" height="100" fill="#3498db" />
+
+        <!-- Circle (Lingkaran) -->
+        <!-- cx, cy = koordinat pusat, r = radius -->
+        <circle cx="300" cy="70" r="50" fill="#e74c3c" />
+
+        <!-- Line (Garis) -->
+        <line x1="20" y1="150" x2="370" y2="150" stroke="#2ecc71" stroke-width="3" />
+
+        <!-- Text -->
+        <text x="50" y="180" font-size="20" fill="#2ecc71" font-family="Arial">Hello SVG!</text>
+
+        <!-- Polygon (Bintang/Segitiga) -->
+        <!-- points="x1,y1 x2,y2 ..." -->
+        <!-- <polygon points="200,10 250,190 160,210" style="fill:lime;stroke:purple;stroke-width:1" /> -->
+    </svg>
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    3. PERBEDAAN UTAMA: CANVAS VS SVG
+    ═══════════════════════════════════════════════════════════
+    -->
+    <h2>Perbedaan Canvas vs SVG</h2>
+    <ul>
+        <li><strong>Canvas:</strong>
+            <ul>
+                <li>Berbasis Pixel (Raster).</li>
+                <li>Digambar dengan Script (JS).</li>
+                <li>Performa tinggi untuk banyak objek bergerak (Game).</li>
+                <li>Tidak bisa mendeteksi event click pada objek spesifik (harus hitung koordinat).</li>
+                <li>Save as PNG/JPG mudah.</li>
+            </ul>
+        </li>
+        <li><strong>SVG:</strong>
+            <ul>
+                <li>Berbasis Vektor (Shape).</li>
+                <li>Dibuat dengan Tag XML.</li>
+                <li>Tetap tajam di resolusi berapapun (Retina display).</li>
+                <li>Setiap shape adalah elemen DOM (bisa kasih class/id/onclick).</li>
+                <li>Kurang bagus untuk game berat.</li>
+            </ul>
+        </li>
+    </ul>
+
+</body>
+
+</html>
