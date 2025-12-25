@@ -1,0 +1,41 @@
+/* 
+    W3SCHOOLS: COLORS & BACKGROUNDS
+*/
+
+/* 1. COLORS */
+/* Ada banyak cara menulis warna: */
+.colors {
+    color: Tomato;
+    /* 1. Color Names */
+    color: #ff6347;
+    /* 2. Hex values */
+    color: rgb(255, 99, 71);
+    /* 3. RGB values */
+    color: rgba(255, 99, 71, 0.5);
+    /* 4. RGBA (A = Alpha/Opacity) */
+    color: hsl(9, 100%, 64%);
+    /* 5. HSL */
+}
+
+/* 2. BACKGROUNDS */
+body {
+    /* Warna background */
+    background-color: lightblue;
+
+    /* Gambar background */
+    background-image: url("paper.gif");
+
+    /* Arah pengulangan gambar */
+    background-repeat: no-repeat;
+    /* repeat-x, repeat-y */
+
+    /* Posisi gambar */
+    background-position: right top;
+
+    /* Attachment (Scroll vs Fixed) */
+    background-attachment: fixed;
+    /* Gambar diam saat di-scroll */
+
+    /* Shorthand Property (Gabungan) */
+    /* background: #ffffff url("img_tree.png") no-repeat right top; */
+}
