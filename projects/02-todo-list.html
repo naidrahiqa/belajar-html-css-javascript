@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List App - Praktik HTML, CSS, JS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, #2c3e50, #3498db);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+        }
+
+        .input-section {
+            padding: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        #todo-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        #add-btn {
+            padding: 12px 25px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #add-btn:hover {
+            background: #2980b9;
+        }
+
+        .todo-list {
+            list-style: none;
+            padding: 0 20px 20px;
+        }
+
+        .todo-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .todo-item:hover {
+            transform: translateX(5px);
+        }
+
+        .todo-item.completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .todo-text {
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        LIVE PROJECT 2: TODO LIST APP
+        Konsep yang digunakan:
+        - HTML: Form, List, Button
+        - CSS: Flexbox, Transitions, Hover effects
+        - JS: DOM Manipulation, Event Listeners, Array methods
+    -->
+
+    <div class="container">
+        <div class="header">
+            <h1>📝 My Todo List</h1>
+        </div>
+
+        <div class="input-section">
+            <input type="text" id="todo-input" placeholder="Tambah tugas baru...">
+            <button id="add-btn">Tambah</button>
+        </div>
+
+        <ul class="todo-list" id="todo-list">
+            <!-- Todo items akan ditambahkan di sini oleh JavaScript -->
+        </ul>
+    </div>
+
+    <script>
+        // KONSEP JS: DOM Manipulation, Event Listeners, LocalStorage
+
+        const todoInput = document.getElementById('todo-input');
+        const addBtn = document.getElementById('add-btn');
+        const todoList = document.getElementById('todo-list');
+
+        // Load todos dari LocalStorage (07-es6-modern.js)
+        let todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+        // Render todos saat halaman load
+        renderTodos();
+
+        // Event: Tambah todo (06-dom.js)
+        addBtn.addEventListener('click', addTodo);
+        todoInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addTodo();
+        });
+
+        function addTodo() {
+            const text = todoInput.value.trim();
+            if (text === '') return;
+
+            // Tambah ke array (04-arrays.js)
+            todos.push({
+                id: Date.now(),
+                text: text,
+                completed: false
+            });
+
+            saveTodos();
+            renderTodos();
+            todoInput.value = ''; // Clear input
+        }
+
+        function renderTodos() {
+            // Clear list
+            todoList.innerHTML = '';
+
+            // Loop todos dan buat elemen (05-logic-loops.js)
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
+
+                li.innerHTML = `
+                    <span class="todo-text" onclick="toggleComplete(${todo.id})">
+                        ${todo.text}
+                    </span>
+                    <button class="delete-btn" onclick="deleteTodo(${todo.id})">Hapus</button>
+                `;
+
+                todoList.appendChild(li);
+            });
+        }
+
+        function toggleComplete(id) {
+            // Find dan toggle (04-arrays.js: find method)
+            const todo = todos.find(t => t.id === id);
+            if (todo) {
+                todo.completed = !todo.completed;
+                saveTodos();
+                renderTodos();
+            }
+        }
+
+        function deleteTodo(id) {
+            // Filter out todo yang dihapus (04-arrays.js: filter method)
+            todos = todos.filter(t => t.id !== id);
+            saveTodos();
+            renderTodos();
+        }
+
+        function saveTodos() {
+            // Simpan ke LocalStorage (07-es6-modern.js: JSON)
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+    </script>
+
+</body>
+
+</html>
