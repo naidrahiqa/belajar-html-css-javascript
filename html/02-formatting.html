@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    W3SCHOOLS: HTML HEADINGS, PARAGRAPHS, & TEXT FORMATTING
+    ═══════════════════════════════════════════════════════════
+    
+    DI BAB INI KAMU AKAN BELAJAR:
+    1. Headings (h1-h6) - Judul/heading
+    2. Paragraphs - Paragraf text
+    3. Text Formatting - Bold, italic, underline, etc
+    4. Quotations - Kutipan text
+    5. Comments - Komentar HTML
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    HEADINGS (JUDUL/HEADING)
+    ═══════════════════════════════════════════════════════════
+    
+    ADA 6 LEVEL HEADING: <h1> sampai <h6>
+    
+    HIRARKI (dari paling penting → paling tidak penting):
+    <h1> - PALING PENTING (Judul utama halaman)
+    <h2> - Sub-judul dari h1
+    <h3> - Sub-judul dari h2
+    <h4> - Sub-judul dari h3
+    <h5> - Sub-judul dari h4
+    <h6> - PALING KECIL PENTING
+    
+    UKURAN DEFAULT:
+    h1 = 2em (32px) - PALING BESAR
+    h2 = 1.5em (24px)
+    h3 = 1.17em (18.72px)
+    h4 = 1em (16px)
+    h5 = 0.83em (13.28px)
+    h6 = 0.67em (10.72px) - PALING KECIL
+    
+    ATURAN PENTING SEO & ACCESSIBILITY:
+    1. HANYA 1 <h1> per halaman
+       - h1 adalah judul utama halaman
+       - Google pakai h1 untuk indexing
+       
+    2. JANGAN SKIP LEVEL
+       ✅ BENAR: h1 → h2 → h3
+       ❌ SALAH: h1 → h3 (skip h2)
+       
+    3. Gunakan untuk STRUKTUR, bukan styling
+       - Jangan pakai h1 karena "mau text besar"
+       - Pakai CSS untuk styling
+       - Heading untuk struktur dokumen
+    
+    CONTOH STRUKTUR BAGUS:
+    <h1>Judul Artikel</h1>           ← Main title
+        <h2>Pendahuluan</h2>          ← Section
+        <h2>Isi</h2>                  ← Section
+            <h3>Sub-topik 1</h3>      ← Sub-section
+            <h3>Sub-topik 2</h3>      ← Sub-section
+        <h2>Kesimpulan</h2>           ← Section
+    -->
+
+    <h1>Heading 1 (Paling Penting)</h1>
+    <!-- Judul UTAMA halaman. Hanya 1 per page! -->
+
+    <h2>Heading 2</h2>
+    <!-- Sub-judul dari h1. Bisa lebih dari 1. -->
+
+    <h3>Heading 3</h3>
+    <!-- Sub-judul dari h2 -->
+
+    <h4>Heading 4</h4>
+    <!-- Sub-judul dari h3 -->
+
+    <h5>Heading 5</h5>
+    <!-- Jarang dipakai. Untuk sub-sub-sub heading -->
+
+    <h6>Heading 6 (Paling Kecil)</h6>
+    <!-- Paling kecil. Sangat jarang dipakai -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    PARAGRAPHS (PARAGRAF)
+    ═══════════════════════════════════════════════════════════
+    
+    TAG <p>: Paragraf text
+    
+    CARA KERJA HTML WHITESPACE:
+    - Multiple spaces → jadi 1 space
+    - Enter/newline → jadi 1 space
+    - Tab → jadi 1 space
+    
+    CONTOH:
+    <p>
+        Ini    banyak      spasi
+        dan ada
+        baris baru
+    </p>
+    
+    HASIL DI BROWSER:
+    "Ini banyak spasi dan ada baris baru"
+    
+    JIKA MAU KEEP FORMATTING:
+    - Pakai <pre> tag (preformatted text)
+    - Atau pakai <br> untuk line break
+    - Atau pakai CSS white-space property
+    -->
+
+    <p>
+        Ini adalah paragraf.
+        HTML akan menghapus spasi berlebih dan baris baru
+        di dalam kodingan paragraph.
+    </p>
+    <!--
+    Text di atas ditulis 3 baris di code,
+    tapi di browser jadi 1 baris!
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    TEXT FORMATTING TAGS
+    ═══════════════════════════════════════════════════════════
+    
+    ADA 2 KATEGORI:
+    
+    1. PHYSICAL TAGS (Styling saja)
+       - <b> <i> <u> <small>
+       - Hanya mengubah tampilan, tidak ada makna
+       
+    2. SEMANTIC TAGS (Punya makna)
+       - <strong> <em> <mark> <del> <ins>
+       - Punya makna/arti, bagus untuk SEO & accessibility
+    
+    SEMANTIC LEBIH BAIK!
+    - Screen readers bisa baca dengan benar
+    - Search engines tahu emphasis
+    -->
+
+
+    <!-- BOLD: Text Tebal -->
+
+    <p><b>This text is bold (b)</b></p>
+    <!--
+    TAG <b>: Bold (PHYSICAL - styling saja)
+    FUNGSI: Membuat text tebal
+    KAPAN DIGUNAKAN: Jika hanya mau styling tebal, tanpa emphasis
+    -->
+
+    <p><strong>This text is important (strong) - Semantik</strong></p>
+    <!--
+    TAG <strong>: Strong importance (SEMANTIC)
+    FUNGSI: Text tebal + makna "PENTING"
+    KAPAN DIGUNAKAN: Text yang penting/serius
+    
+    SEMANTIC = Screen reader baca dengan penekanan
+    LEBIH BAIK DARI <b> untuk SEO & accessibility
+    
+    CONTOH PENGGUNAAN:
+    <strong>Warning!</strong> Do not touch.
+    <strong>Important:</strong> Read carefully.
+    -->
+
+
+    <!-- ITALIC: Text Miring -->
+
+    <p><i>This text is italic (i)</i></p>
+    <!--
+    TAG <i>: Italic (PHYSICAL - styling saja)
+    FUNGSI: Membuat text miring
+    KAPAN DIGUNAKAN: 
+    - Technical terms
+    - Foreign phrases
+    - Thoughts (dalam novel)
+    -->
+
+    <p><em>This text is emphasized (em) - Semantik</em></p>
+    <!--
+    TAG <em>: Emphasis (SEMANTIC)
+    FUNGSI: Text miring + makna "DITEKANKAN"
+    KAPAN DIGUNAKAN: Text yang perlu emphasis/penekanan
+    
+    LEBIH BAIK DARI <i> untuk SEO
+    
+    CONTOH:
+    I <em>really</em> hate broccoli.
+    This is <em>extremely</em> important.
+    -->
+
+
+    <!-- SMALL: Text Kecil -->
+
+    <p><small>This is some smaller text (small)</small></p>
+    <!--
+    TAG <small>: Smaller text
+    FUNGSI: Text lebih kecil dari normal
+    KAPAN DIGUNAKAN:
+    - Fine print (text kecil disclaimer)
+    - Copyright notices
+    - Side comments
+    
+    CONTOH:
+    <p>Price: $99.99 <small>per month</small></p>
+    <p><small>© 2024 Company Name. All rights reserved.</small></p>
+    -->
+
+
+    <!-- MARK: Highlight/Stabilo -->
+
+    <p>Do not forget to buy <mark>Milk</mark> today (mark / highlight).</p>
+    <!--
+    TAG <mark>: Marked/highlighted text
+    FUNGSI: Highlight text (seperti stabilo kuning)
+    DEFAULT: Background kuning
+    
+    KAPAN DIGUNAKAN:
+    - Highlight kata penting
+    - Search results (kata yang dicari)
+    - Reference dalam quote
+    
+    CONTOH:
+    Search results for "<mark>JavaScript</mark>"
+    Most <mark>important</mark> point is here.
+    -->
+
+
+    <!-- DEL: Deleted/Strikethrough -->
+
+    <p>My favorite color is <del>blue</del> red (del / dicoret).</p>
+    <!--
+    TAG <del>: Deleted text
+    FUNGSI: Text dicoret/strikethrough
+    MAKNA: Text ini DIHAPUS/tidak valid lagi
+    
+    ATRIBUT OPSIONAL:
+    - cite: URL yang explain kenapa dihapus
+    - datetime: Kapan dihapus
+    
+    KAPAN DIGUNAKAN:
+    - Show changes/edits
+    - Old price
+    - Deprecated information
+    
+    CONTOH:
+    <p>Price: <del>$29.99</del> $19.99 (SALE!)</p>
+    <p><del>Meeting at 2pm</del> CANCELLED</p>
+    -->
+
+
+    <!-- INS: Inserted/Underline -->
+
+    <p>This is <ins>inserted</ins> text (ins / garis bawah).</p>
+    <!--
+    TAG <ins>: Inserted text
+    FUNGSI: Text dengan garis bawah (underline)
+    MAKNA: Text ini DITAMBAHKAN/baru
+    
+    ATRIBUT OPSIONAL:
+    - cite: URL yang explain kenapa ditambah
+    - datetime: Kapan ditambah
+    
+    KAPAN DIGUNAKAN:
+    - Show additions/edits
+    - Document changes
+    
+    KOMBINASI DENGAN <del>:
+    <p>My name is <del>John</del> <ins>James</ins></p>
+    → Show edit dari "John" ke "James"
+    -->
+
+
+    <!-- SUB & SUP: Subscript & Superscript -->
+
+    <p>This is <sub>subscript</sub> and <sup>superscript</sup> text.</p>
+    <!--
+    TAG <sub>: Subscript (text di bawah)
+    TAG <sup>: Superscript (text di atas)
+    
+    SUBSCRIPT <sub> - Text kecil DI BAWAH baseline
+    KAPAN DIGUNAKAN:
+    - Chemical formulas: H<sub>2</sub>O (air)
+    - Math: log<sub>2</sub>(x)
+    - Footnotes: Reference<sub>1</sub>
+    
+    SUPERSCRIPT <sup> - Text kecil DI ATAS baseline
+    KAPAN DIGUNAKAN:
+    - Exponents/pangkat: x<sup>2</sup> + y<sup>2</sup>
+    - Ordinal numbers: 1<sup>st</sup>, 2<sup>nd</sup>
+    - Footnote markers: Text<sup>[1]</sup>
+    - Trademark: Brand<sup>TM</sup>
+    
+    CONTOH LENGKAP:
+    <p>Formula: E = mc<sup>2</sup></p>
+    <p>Water: H<sub>2</sub>O</p>
+    <p>Date: December 23<sup>rd</sup></p>
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    QUOTATIONS (KUTIPAN)
+    ═══════════════════════════════════════════════════════════
+    
+    ADA 2 JENIS QUOTE TAG:
+    1. <blockquote> - Quote panjang (block level)
+    2. <q> - Quote pendek (inline)
+    -->
+
+    <p>Browser biasanya meng-indent blockquote:</p>
+
+    <blockquote cite="http://www.worldwildlife.org/who/index.html">
+        For 50 years, WWF has been protecting the future of nature.
+    </blockquote>
+    <!--
+    TAG <blockquote>: Block quotation
+    
+    FUNGSI: Kutipan PANJANG (beberapa kalimat/paragraf)
+    
+    CARA KERJA:
+    - Browser otomatis indent (geser ke kanan)
+    - Biasanya tampil sebagai block (paragraf terpisah)
+    
+    ATRIBUT:
+    cite="URL" - Sumber kutipan (untuk SEO, tidak tampil)
+    
+    KAPAN DIGUNAKAN:
+    - Quote panjang dari sumber lain
+    - Testimonials
+    - Excerpts (kutipan artikel)
+    
+    CONTOH:
+    <blockquote cite="https://source.com">
+        <p>This is a long quote from someone famous.</p>
+        <p>It can have multiple paragraphs.</p>
+    </blockquote>
+    -->
+
+    <p>WWF's goal is to: <q>Build a future where people live in harmony with nature.</q> (Short quote)</p>
+    <!--
+    TAG <q>: Short inline quotation
+    
+    FUNGSI: Kutipan PENDEK (satu kalimat/frase)
+    
+    CARA KERJA:
+    - Browser otomatis tambah quote marks ("...")
+    - Inline (tidak break line)
+    
+    ATRIBUT:
+    cite="URL" - Sumber kutipan
+    
+    KAPAN DIGUNAKAN:
+    - Quote pendek dalam kalimat
+    - Dialog
+    - Short phrases
+    
+    PERBEDAAN <q> vs <blockquote>:
+    <q> → Inline, pendek, otomatis dapat " "
+    <blockquote> → Block, panjang, di-indent
+    
+    CONTOH:
+    <p>As Einstein said, <q>Imagination is more important than knowledge.</q></p>
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    HTML COMMENTS (KOMENTAR)
+    ═══════════════════════════════════════════════════════════
+    
+    SYNTAX: <!-- komentar di sini -->
+
+    FUNGSI:
+    - Tidak tampil di browser
+    - Hanya terlihat di source code
+    - Untuk catatan/dokumentasi
+
+    KAPAN DIGUNAKAN:
+    - Explain code
+    - Temporary hide code (debugging)
+    - TODO notes
+    - Section markers
+
+    BISA MULTI-LINE:
+    <!--
+        Ini komentar
+        bisa banyak baris
+        tidak masalah
+    -->
+
+    JANGAN GUNAKAN UNTUK:
+    - Sensitive information (tetap bisa dilihat di view source!)
+    - User messages (pakai tag biasa)
+
+    TIPS:
+    - Jangan terlalu banyak (berat loading)
+    - Hapus before production
+    -->
+
+    <!-- Ini adalah komentar. Tidak tampil di browser. Gunakan untuk catatan. -->
+
+</body>
+
+</html>
