@@ -1,0 +1,162 @@
+/* 
+═══════════════════════════════════════════════════════════
+W3SCHOOLS: CSS TRANSFORMS (2D & 3D)
+═══════════════════════════════════════════════════════════
+
+DI BAB INI KAMU AKAN BELAJAR:
+1. Transform 2D (Translate, Rotate, Scale, Skew)
+2. Transform 3D (Perspective, RotateX/Y/Z)
+3. Transform Origin (Titik Pusat)
+4. Membuat Efek Kartu Berputar (Card Flip)
+*/
+
+
+/* ═══════════════════════════════════════════════
+   1. TRANSFORM 2D PROPERTIES
+   ═══════════════════════════════════════════════ */
+
+/* 
+Fungsi transform memungkinkan kita memanipulasi bentuk/posisi elemen.
+Transform LEBIH BAIK untuk animasi daripada margin/top/left (lebih ringan di browser).
+*/
+
+/* A. TRANSLATE (GESER) */
+.translate {
+    transform: translate(50px, 100px);
+    /* Geser X (Kanan 50px), Geser Y (Bawah 100px) */
+
+    /* translateX(50px) -> Geser Horizontal saja */
+    /* translateY(-20px) -> Geser Vertikal saja (Minus = Ke atas) */
+}
+
+
+/* B. ROTATE (PUTAR) */
+.rotate {
+    transform: rotate(45deg);
+    /* Putar 45 derajat searah jarum jam */
+    /* Gunakan minus (-45deg) untuk berlawanan arah jarum jam */
+}
+
+
+/* C. SCALE (ZOOM/RESIZE) */
+.scale {
+    transform: scale(1.5);
+    /* 1.5x lebih besar dari ukuran asli */
+
+    /* scale(0.5) -> 50% ukuran asli (mengecil) */
+    /* scale(2, 0.5) -> Lebar 2x, Tinggi 0.5x (Gepeng) */
+}
+
+
+/* D. SKEW (CONDONG/MIRING) */
+.skew {
+    transform: skewX(20deg);
+    /* Miring horizontal 20 derajat */
+    /* skewY(10deg) -> Miring vertikal */
+}
+
+
+/* E. MULTIPLE TRANSFORMS (GABUNGAN) */
+/* Kita bisa menggabung beberapa fungsi sekaligus (pisahkan dengan spasi) */
+.combo {
+    transform: rotate(15deg) scale(1.2) translateX(50px);
+    /* 
+    HATI-HATI: Urutan berpengaruh!
+    Browser akan mengeksekusi dari kiri ke kanan.
+    Putar dulu -> Zoom -> Baru geser.
+    */
+}
+
+
+/* ═══════════════════════════════════════════════
+   2. TRANSFORM 3D PROPERTIES
+   ═══════════════════════════════════════════════ */
+
+/* 
+Agar efek 3D terlihat nyata, induk elemen (parent) harus punya "perspective".
+Perspective = Jarak mata pengamat ke layar (semakin kecil, semakin ekstrim efeknya).
+*/
+
+.perspective-box {
+    perspective: 600px;
+    /* Jarak pandang 600px */
+}
+
+.perspective-box .child {
+    transform: rotateY(45deg);
+    /* Memutar elemen seperti pintu terbuka */
+    /* rotateX(45deg) -> Jungkir balik depan belakang */
+    /* rotateZ(45deg) -> Sama seperti rotate 2D */
+}
+
+
+/* ═══════════════════════════════════════════════
+   3. TRANSFORM ORIGIN (TITIK PUSAT)
+   ═══════════════════════════════════════════════ */
+
+/* Defaultnya, transformasi terjadi dari TENGAH (center center) */
+
+.origin-top-left {
+    transform-origin: top left;
+    /* Atau: 0% 0% */
+    transform: rotate(45deg);
+    /* Elemen akan berayun seperti lukisan miring yang dipaku di pojok kiri atas */
+}
+
+
+/* ═══════════════════════════════════════════════
+   4. STEP-BY-STEP: FLIP CARD EFFECT (KARTU BOLAK BALIK)
+   ═══════════════════════════════════════════════ */
+
+/* Container Utama */
+.flip-card {
+    background-color: transparent;
+    width: 200px;
+    height: 300px;
+    perspective: 1000px;
+    /* Wajib ada untuk efek 3D */
+}
+
+/* Pembungkus Dalam (yang akan berputar) */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    /* Animasi halus 0.6 detik */
+    transform-style: preserve-3d;
+    /* Agar anak elemen tetap dalam mode 3D */
+}
+
+/* Aksi: Saat hover, putar 180 derajat */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Muka Depan & Belakang */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    /* Tumpuk depan belakang */
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    /* Safari */
+    backface-visibility: hidden;
+    /* Sembunyikan sisi belakang saat kartu diputar */
+}
+
+/* Style spesifik */
+.flip-card-front {
+    background-color: #bbb;
+    color: black;
+}
+
+.flip-card-back {
+    background-color: #2980b9;
+    color: white;
+    /* Putar sisi belakang 180 derajat dari awal */
+    /* Jadi saat container diputar 180, sisi ini jadi menghadap ke depan (0) */
+    transform: rotateY(180deg);
+}
