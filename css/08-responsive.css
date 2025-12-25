@@ -1,0 +1,45 @@
+/* 
+    W3SCHOOLS: RESPONSIVE WEB DESIGN
+*/
+
+/* 1. VIEWPORT */
+/* Pastikan ini ada di <head> HTML:
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+*/
+
+/* 2. MEDIA QUERIES */
+
+/* Style Default (Misal untuk Mobile/Layar Kecil - Mobile First Approach) */
+body {
+    background-color: lightgreen;
+}
+
+.kolom {
+    width: 100%;
+    /* Penuh di HP */
+}
+
+
+/* Jika layar >= 600px (Tablet) */
+@media only screen and (min-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+
+    .kolom {
+        width: 50%;
+        /* Setengah di Tablet */
+    }
+}
+
+/* Jika layar >= 768px (Laptop/Desktop) */
+@media only screen and (min-width: 768px) {
+    body {
+        background-color: lavender;
+    }
+
+    .kolom {
+        width: 33.33%;
+        /* Sepertiga di Laptop */
+    }
+}
