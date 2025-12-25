@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!-- 
+═══════════════════════════════════════════════════════════
+PENJELASAN DOCTYPE:
+═══════════════════════════════════════════════════════════
+
+<!DOCTYPE html> adalah DEKLARASI tipe dokumen
+
+FUNGSI:
+- Memberitahu browser bahwa ini adalah dokumen HTML5
+- WAJIB ada di baris PERTAMA
+- Tidak case-sensitive (<!doctype html> juga boleh)
+- BUKAN tag HTML (tidak punya tag penutup)
+
+KENAPA PENTING?
+- Tanpa DOCTYPE, browser masuk "quirks mode" (mode kompatibilitas lama)
+- Dengan DOCTYPE, browser render halaman dengan standar modern
+-->
+
+<html lang="en">
+<!--
+═══════════════════════════════════════════════════════════
+TAG <html>: ROOT ELEMENT
+═══════════════════════════════════════════════════════════
+
+FUNGSI: Container UTAMA untuk semua elemen HTML lainnya
+
+ATRIBUT lang="en":
+- Menentukan bahasa konten (en = English)
+- Penting untuk:
+  * Screen readers (pembaca layar untuk tuna netra)
+  * Search engines (SEO)
+  * Translation tools
+  
+BAHASA LAIN:
+- lang="id" untuk Bahasa Indonesia
+- lang="es" untuk Spanish
+- lang="fr" untuk French
+-->
+
+<head>
+    <!--
+    ═══════════════════════════════════════════════════════════
+    TAG <head>: METADATA SECTION
+    ═══════════════════════════════════════════════════════════
+    
+    FUNGSI: Berisi informasi TENTANG halaman (bukan konten yang ditampilkan)
+    
+    ISI <head> TIDAK TERLIHAT di halaman web!
+    ISI <head> dibaca oleh:
+    - Browser (untuk setting)
+    - Search engines (untuk SEO)
+    - Social media (untuk preview)
+    -->
+
+    <meta charset="UTF-8">
+    <!--
+    TAG <meta charset="UTF-8">
+    
+    FUNGSI: Menentukan character encoding (cara browser baca karakter)
+    
+    UTF-8:
+    - Support SEMUA karakter di dunia (Latin, Chinese, Arabic, Emoji, etc)
+    - Standar modern
+    - WAJIB ada untuk support karakter Indonesia (ä, ö, ü, etc)
+    
+    Tanpa ini:
+    - Karakter khusus jadi "?"  atau "���"
+    - Emoji tidak muncul
+    -->
+
+    <title>01. HTML Intro & Basic</title>
+    <!--
+    TAG <title>
+    
+    FUNGSI: Judul halaman yang muncul di:
+    - Tab browser (yang kamu lihat di atas)
+    - Bookmark
+    - Search results Google
+    
+    WAJIB ADA! Setiap halaman harus punya <title>
+    
+    TIPS:
+    - Deskriptif (jangan cuma "Page 1")
+    - Max 60 karakter untuk SEO
+    - Unik untuk setiap halaman
+    -->
+</head>
+
+<body>
+    <!--
+    ═══════════════════════════════════════════════════════════
+    TAG <body>: CONTENT SECTION
+    ═══════════════════════════════════════════════════════════
+    
+    FUNGSI: Berisi semua konten yang TERLIHAT di halaman web
+    
+    Apa saja yang ada di <body>:
+    - Text
+    - Images
+    - Videos
+    - Links
+    - Tables
+    - Forms
+    - Etc
+    
+    HANYA BOLEH ADA 1 <body> per halaman!
+    -->
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    W3SCHOOLS: HTML INTRODUCTION & BASICS
+    ═══════════════════════════════════════════════════════════
+    
+    APA ITU HTML?
+    1. HTML = HyperText Markup Language
+       - HyperText = Text dengan link
+       - Markup = Menandai struktur dokumen dengan tag
+       - Language = Bahasa (tapi bukan programming language!)
+    
+    2. HTML adalah STANDAR bahasa untuk membuat halaman web
+       - Dibuat tahun 1991
+       - Standar internasional (W3C)
+       - Semua browser mendukung
+    
+    3. HTML menggambarkan STRUKTUR halaman web
+       - Seperti kerangka rumah
+       - Menentukan apa itu heading, paragraph, link, etc
+       - BUKAN untuk styling (itu tugas CSS!)
+    
+    4. HTML terdiri dari ELEMEN (Tag)
+       - Tag = Penanda elemen
+       - Contoh: <p>, <h1>, <img>, etc
+    -->
+
+    <h1>My First Heading</h1>
+    <!--
+    TAG <h1>: HEADING LEVEL 1
+    
+    FUNGSI: Judul/heading PALING PENTING di halaman
+    
+    ADA 6 LEVEL HEADING:
+    <h1> - Paling penting (judul utama)
+    <h2> - Sub-heading dari h1
+    <h3> - Sub-heading dari h2
+    <h4>, <h5>, <h6> - Semakin kecil kepentingannya
+    
+    ATURAN PENTING:
+    - Hanya boleh 1 <h1> per halaman (untuk SEO)
+    - Gunakan berurutan (jangan loncat dari h1 ke h3)
+    - <h1> untuk judul halaman, <h2> untuk section, dst
+    
+    BEDANYA DENGAN <title>:
+    - <title> → Muncul di tab browser (tidak di halaman)
+    - <h1> → Muncul di halaman web (yang user lihat)
+    -->
+
+    <p>My first paragraph.</p>
+    <!--
+    TAG <p>: PARAGRAPH
+    
+    FUNGSI: Membuat paragraf teks
+    
+    CARA KERJA:
+    - Browser otomatis tambah jarak (margin) di atas & bawah
+    - Multiple spaces/enters di HTML → jadi 1 space di browser
+    
+    Contoh:
+    <p>Ini     banyak    spasi</p>
+    → Browser render: "Ini banyak spasi" (jadi 1 space)
+    
+    TIPS:
+    - Jangan pakai <p> untuk line break → pakai <br>
+    - Jangan pakai banyak <p></p> kosong untuk spacing → pakai CSS
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    HTML ELEMENTS (ELEMEN HTML)
+    ═══════════════════════════════════════════════════════════
+    
+    STRUKTUR ELEMENT:
+    
+    <tagname>Content goes here</tagname>
+     │         │                  │
+     │         │                  └─ TAG PENUTUP (closing tag)
+     │         └─ CONTENT (isi/konten)
+     └─ TAG PEMBUKA (opening tag)
+    
+    CONTOH:
+    <h1>My Title</h1>
+     │   │        │
+     │   │        └─ </h1> (penutup)
+     │   └─ "My Title" (content)
+     └─ <h1> (pembuka)
+    
+    
+    JENIS ELEMENT:
+    
+    1. NORMAL ELEMENTS (Punya opening & closing tag)
+       Contoh: <p>text</p>, <div>content</div>
+    
+    2. EMPTY/VOID ELEMENTS (Tidak punya closing tag)
+       Contoh: <br>, <img>, <hr>, <input>
+       
+       Kenapa tidak punya closing?
+       - Karena tidak "membungkus" content
+       - Langsung menjalankan fungsi
+       
+       BOLEH ditulis:
+       - <br>      ← HTML5 style (recommended)
+       - <br />    ← XHTML style (masih ok)
+    
+    3. NESTED ELEMENTS (Element di dalam element)
+       <div>
+           <p>Paragraph inside div</p>
+       </div>
+       └─ <p> adalah CHILD dari <div>
+    -->
+
+    <p>Ini baris satu.<br>Ini baris dua (pakai tag br).</p>
+    <!--
+    TAG <br>: LINE BREAK
+    
+    FUNGSI: Memaksa ganti baris BARU (tanpa jarak paragraf)
+    
+    KAPAN DIGUNAKAN?
+    - Address (alamat multi-baris)
+    - Puisi (setiap baris puisi)
+    - Tempat yang butuh line break tanpa spacing paragraf
+    
+    JANGAN GUNAKAN untuk:
+    - Spacing antar paragraf → Pakai <p> atau CSS margin
+    - Layout → Pakai CSS
+    
+    BEDANYA DENGAN <p>:
+    <p>Baris 1</p>     ← Ada jarak besar
+    <p>Baris 2</p>
+    
+    Baris 1<br>        ← Hanya ganti baris, tidak ada jarak
+    Baris 2
+    
+    CATATAN:
+    - <br> adalah EMPTY element (tidak punya tag penutup)
+    - JANGAN tulis <br></br> ❌
+    - Boleh tulis <br> atau <br/> ✅
+    -->
+
+
+    <!--
+    ═══════════════════════════════════════════════════════════
+    HTML ATTRIBUTES (ATRIBUT HTML)
+    ═══════════════════════════════════════════════════════════
+    
+    APA ITU ATRIBUT?
+    - Informasi TAMBAHAN tentang element
+    - Memberikan "setting" pada element
+    - Selalu ada di TAG PEMBUKA
+    - Format: name="value"
+    
+    STRUKTUR:
+    <tagname attributename="value">Content</tagname>
+              │               │
+              │               └─ Nilai atribut (dalam quotes)
+              └─ Nama atribut
+    
+    CONTOH:
+    <a href="https://google.com">Link</a>
+       │     │
+       │     └─ Value: URL tujuan
+       └─ Attribute name: href
+    
+    ATURAN:
+    - Atribut SELALU di tag pembuka (bukan tag penutup)
+    - Format: name="value"
+    - Value pakai quotes ("..." atau '...')
+    - Bisa lebih dari 1 atribut di 1 tag
+    
+    MULTIPLE ATTRIBUTES (Banyak atribut):
+    <img src="photo.jpg" width="500" height="300" alt="Description">
+         │              │             │              │
+         └─ Atribut 1   └─ Atribut 2  └─ Atribut 3  └─ Atribut 4
+    
+    COMMON ATTRIBUTES (Atribut umum yang bisa di hampir semua tag):
+    - id       : Identifier unik
+    - class    : Class name untuk CSS
+    - style    : Inline CSS
+    - title    : Tooltip text (muncul saat hover)
+    -->
+
+    <!-- href adalah atribut untuk tag <a> -->
+    <a href="https://www.w3schools.com">Ini adalah Link</a>
+    <!--
+    TAG <a>: ANCHOR (LINK)
+    
+    FUNGSI: Membuat hyperlink (link yang bisa diklik)
+    
+    ATRIBUT WAJIB:
+    href = Hypertext REFerence (URL tujuan)
+    - Tanpa href, <a> tidak berfungsi sebagai link
+    - Value bisa:
+      * URL lengkap: href="https://google.com"
+      * Relative path: href="page2.html"
+      * Anchor: href="#section1"
+      * Email: href="mailto:email@example.com"
+      * Phone: href="tel:+1234567890"
+    
+    CONTOH:
+    <a href="https://www.w3schools.com">Ini adalah Link</a>
+       │                                │
+       │                                └─ Text yang diklik user (anchor text)
+       └─ Alamat tujuan link
+    
+    Klik "Ini adalah Link" → Buka https://www.w3schools.com
+    -->
+
+    <!-- src, width, height adalah atribut untuk tag <img> -->
+    <!-- Tidak perlu file beneran, ini contoh syntax -->
+    <img src="img_girl.jpg" width="500" height="600" alt="Girl in a jacket">
+    <!--
+    TAG <img>: IMAGE
+    
+    FUNGSI: Menampilkan gambar di halaman
+    
+    <img> adalah EMPTY element (tidak punya closing tag)
+    
+    ATRIBUT WAJIB:
+    
+    1. src (source) = Lokasi file gambar
+       - URL internet: src="https://example.com/photo.jpg"
+       - File lokal: src="images/photo.jpg"
+       - Tanpa src, gambar tidak muncul
+    
+    2. alt (alternative text) = Deskripsi gambar
+       - Muncul jika gambar gagal load
+       - Dibaca screen reader (untuk tuna netra)
+       - Penting untuk SEO
+       - WAJIB ada untuk accessibility!
+    
+    ATRIBUT OPSIONAL:
+    
+    3. width = Lebar gambar (dalam pixel)
+    4. height = Tinggi gambar (dalam pixel)
+       - Sebaiknya diisi (browser reserve space)
+       - Mencegah layout shift saat gambar load
+    
+    CONTOH TAG LENGKAP:
+    <img src="img_girl.jpg" width="500" height="600" alt="Girl in a jacket">
+         │                  │            │             │
+         │                  │            │             └─ Deskripsi gambar
+         │                  │            └─ Tinggi: 600px
+         │                  └─ Lebar: 500px
+         └─ Lokasi file gambar
+    
+    TIPS:
+    - alt HARUS deskriptif: "Girl in red jacket" ✅
+    - alt JANGAN generic: "image" ❌
+    - Jika gambar dekoratif saja (tidak penting): alt=""
+    -->
+
+</body>
+
+</html>
