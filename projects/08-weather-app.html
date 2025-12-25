@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App - Fetch API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #2193b0, #6dd5ed);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2193b0;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        #cityInput {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 15px 30px;
+            background: #2193b0;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #1a7a8f;
+        }
+
+        #weatherDisplay {
+            text-align: center;
+            display: none;
+        }
+
+        .weather-icon {
+            font-size: 5rem;
+            margin: 20px 0;
+        }
+
+        .temperature {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .city-name {
+            font-size: 2rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            color: #888;
+            text-transform: capitalize;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .detail-box {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PROJECT 8: WEATHER APP -->
+    <!-- Konsep: Fetch API, Async/Await, Error handling -->
+
+    <div class="container">
+        <h1>⛅ Weather App</h1>
+
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Enter city name..." value="London">
+            <button onclick="getWeather()">Search</button>
+        </div>
+
+        <div class="loading" id="loading">Loading...</div>
+        <div class="error" id="error"></div>
+
+        <div id="weatherDisplay">
+            <div class="weather-icon" id="weatherIcon">🌤️</div>
+            <div class="temperature" id="temperature">--°C</div>
+            <div class="city-name" id="cityName">City</div>
+            <div class="description" id="description">Description</div>
+
+            <div class="details">
+                <div class="detail-box">
+                    <div class="detail-label">Feels Like</div>
+                    <div class="detail-value" id="feelsLike">--°C</div>
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label">Humidity</div>
+                    <div class="detail-value" id="humidity">--%</div>
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label">Wind Speed</div>
+                    <div class="detail-value" id="windSpeed">-- m/s</div>
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label">Pressure</div>
+                    <div class="detail-value" id="pressure">-- hPa</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = 'bd5e378503939ddaee76f12ad7a97608'; // Free OpenWeatherMap API key
+        const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
+
+        async function getWeather() {
+            const city = document.getElementById('cityInput').value.trim();
+
+            if (!city) {
+                showError('Please enter a city name');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('weatherDisplay').style.display = 'none';
+            document.getElementById('error').style.display = 'none';
+
+            try {
+                const response = await fetch(
+                    `${API_URL}?q=${city}&appid=${API_KEY}&units=metric`
+                );
+
+                if (!response.ok) {
+                    throw new Error('City not found');
+                }
+
+                const data = await response.json();
+                displayWeather(data);
+
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        function displayWeather(data) {
+            document.getElementById('weatherDisplay').style.display = 'block';
+
+            // Temperature
+            document.getElementById('temperature').textContent =
+                `${Math.round(data.main.temp)}°C`;
+
+            // City name
+            document.getElementById('cityName').textContent =
+                `${data.name}, ${data.sys.country}`;
+
+            // Description
+            document.getElementById('description').textContent = data.weather[0].description;
+
+            // Icon
+            const iconMap = {
+                'Clear': '☀️',
+                'Clouds': '☁️',
+                'Rain': '🌧️',
+                'Snow': '❄️',
+                'Drizzle': '🌦️',
+                'Thunderstorm': '⛈️'
+            };
+            const weatherMain = data.weather[0].main;
+            document.getElementById('weatherIcon').textContent = iconMap[weatherMain] || '🌤️';
+
+            // Details
+            document.getElementById('feelsLike').textContent = `${Math.round(data.main.feels_like)}°C`;
+            document.getElementById('humidity').textContent = `${data.main.humidity}%`;
+            document.getElementById('windSpeed').textContent = `${data.wind.speed} m/s`;
+            document.getElementById('pressure').textContent = `${data.main.pressure} hPa`;
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = `Error: ${message}`;
+            errorDiv.style.display = 'block';
+        }
+
+        // Allow Enter key
+        document.getElementById('cityInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                getWeather();
+            }
+        });
+
+        // Load default city on page load
+        window.onload = () => getWeather();
+    </script>
+
+</body>
+
+</html>
