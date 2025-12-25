@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    W3SCHOOLS: HTML FORMS
+    ═══════════════════════════════════════════════════════════
+
+    DI BAB INI KAMU AKAN BELAJAR:
+    1. Konsep Form (<form>, <input>, <label>)
+    2. Input Types (text, radio, checkbox, submit)
+    3. Form Elements (select, textarea, button)
+    4. Input Attributes (value, name, readonly, disabled)
+    -->
+
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    KONSEP DASAR FORM
+    ═══════════════════════════════════════════════════════════
+    
+    <form> adalah container untuk semua elemen input.
+    Fungsinya mengumpulkan data user untuk dikirim ke server.
+    
+    ATRIBUT PENTING <form>:
+    - action="URL" : Ke mana data dikirim saat submit.
+    - method="GET/POST" : Cara pengiriman data.
+      * GET: Data terlihat di URL (tidak aman untuk password).
+      * POST: Data tersembunyi (aman/secure).
+    -->
+
+    <h2>HTML Forms</h2>
+
+    <form action="/action_page.php">
+
+        <!-- 
+        1. TEXT INPUT 
+        Tipe input paling dasar. Kotak satu baris untuk ketik teks.
+        
+        PENTINGNYA <label>:
+        - for="id_input" : Menghubungkan label dengan input.
+        - Accessibility : Screen reader membacakan label ini.
+        - Clickable : Klik label = fokus ke input.
+        -->
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <!-- name="fname" PENTING! Tanpa 'name', data tidak terkirim ke server -->
+
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+
+
+        <!-- 
+        2. RADIO BUTTONS 
+        Pilih SATU dari beberapa pilihan.
+        
+        SYARAT AGAR BERFUNGSI:
+        - name harus SAMA (contoh: name="fav_language").
+        - Kalau name beda, bisa pilih semua (bukan radio logic).
+        -->
+        <p>Choose your favorite Web language:</p>
+
+        <input type="radio" id="html" name="fav_language" value="HTML">
+        <label for="html">HTML</label><br>
+
+        <input type="radio" id="css" name="fav_language" value="CSS">
+        <label for="css">CSS</label><br>
+
+        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+        <label for="javascript">JavaScript</label><br><br>
+
+
+        <!-- 
+        3. CHECKBOXES
+        Pilih NOL atau LEBIH dari pilihan (Multiple choice).
+        
+        - name boleh beda.
+        - Bisa dicentang banyak sekaligus.
+        -->
+        <p>I have a:</p>
+
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+        <label for="vehicle1"> I have a bike</label><br>
+
+        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+        <label for="vehicle2"> I have a car</label><br><br>
+
+
+        <!-- 
+        4. DROPDOWN LIST (<select>)
+        Menu pilihan drop-down. Hemat tempat.
+        
+        <select> : Container menu.
+        <option> : Item pilihan.
+        -->
+        <label for="cars">Choose a car:</label>
+        <select id="cars" name="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+            <!-- Tambahkan 'selected' untuk default choice: <option selected> -->
+        </select>
+        <br><br>
+
+
+        <!-- 
+        5. HTML5 INPUT TYPES
+        HTML5 menambah banyak tipe input spesifik.
+        Browser mobile akan menyesuaikan keyboard (misal: muncul @ untuk email).
+        -->
+
+        <!-- Email Input (Validasi format email otomatis) -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <!-- Date Input (Muncul kalender/date picker) -->
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" name="birthday"><br><br>
+
+        <!-- Number Input (Hanya boleh angka, bisa set min/max) -->
+        <label for="quantity">Quantity (between 1 and 5):</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="5"><br><br>
+
+
+        <!-- 
+        6. ACTION BUTTONS
+        -->
+
+        <!-- Submit: Mengirim data form ke server -->
+        <input type="submit" value="Submit">
+
+        <!-- Reset: Menghapus semua isi form (kembali ke default) -->
+        <input type="reset" value="Reset">
+
+    </form>
+
+</body>
+
+</html>
