@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 APIs - Geolocation & Drag-Drop</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .box {
+            background: #f0f0f0;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Styling area Drop Zone */
+        #dropZone {
+            width: 300px;
+            height: 200px;
+            border: 3px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            transition: all 0.3s;
+        }
+
+        /* Saat item di-drag di atasnya (Hover state untuk Drag) */
+        #dropZone.drag-over {
+            background: #e0f7fa;
+            border-color: #00acc1;
+            transform: scale(1.02);
+        }
+
+        .draggable {
+            padding: 15px;
+            background: #3498db;
+            color: white;
+            margin: 5px;
+            cursor: move;
+            /* Kursor berubah tanda panah geser */
+            display: inline-block;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════
+    W3SCHOOLS: HTML5 APIS (GEOLOCATION & DRAG-DROP)
+    ═══════════════════════════════════════════════════════════
+
+    DI BAB INI KAMU AKAN BELAJAR:
+    1. Geolocation API (Mendapatkan lokasi user GPS)
+    2. Drag and Drop API (Memindah elemen dengan mouse)
+    -->
+
+
+    <!-- 
+    1. GEOLOCATION API
+    Fitur untuk mendapatkan Lat/Long posisi user.
+    PENTING:
+    - Hanya bekerja di HTTPS (kecuali localhost).
+    - Butuh izin/permission dari user (Pop up "Allow Location").
+    -->
+    <h2>1. Geolocation API</h2>
+    <div class="box">
+        <button onclick="getLocation()">Dapatkan Lokasi Saya</button>
+        <p id="location">Klik tombol di atas...</p>
+    </div>
+
+
+    <!-- 
+    2. DRAG & DROP API
+    Mekanisme native browser untuk seret-lepas elemen.
+    
+    ATRIBUT PENTING:
+    - draggable="true" : Membuat elemen bisa ditarik.
+    - Event ondragstart : Saat mulai ditarik.
+    - Event ondragover : Saat berada di atas zona target.
+    - Event ondrop : Saat dilepas di zona target.
+    -->
+    <h2>2. Drag & Drop API</h2>
+    <p>Drag kotak biru ke area kotak putus-putus:</p>
+
+    <!-- Item yang bisa ditarik -->
+    <div class="draggable" draggable="true" ondragstart="drag(event)">
+        Drag Me!
+    </div>
+
+    <!-- Zona target peletakan -->
+    <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+        Drop Here
+    </div>
+
+
+    <script>
+        /* ════════════════════════════════
+           LOGIKA GEOLOCATION
+           ════════════════════════════════ */
+
+        function getLocation() {
+            // Cek apakah browser support
+            if (navigator.geolocation) {
+                // getCurrentPosition(successCallback, errorCallback)
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById('location').textContent =
+                    'Geolocation tidak didukung di browser ini.';
+            }
+        }
+
+        function showPosition(position) {
+            // Sukses dapat lokasi
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            // Tampilkan Link Google Maps
+            document.getElementById('location').innerHTML =
+                `Latitude: ${lat}<br>Longitude: ${lon}<br>` +
+                `<br><a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank" style="color:blue">📍 Lihat di Google Maps</a>`;
+        }
+
+        function showError(error) {
+            // Gagal dapat lokasi
+            const messages = {
+                1: 'User menolak permintaan Geolocation (Akses Ditolak).',
+                2: 'Informasi lokasi tidak tersedia (Sinyal GPS lemah).',
+                3: 'Request timeout (Kelamaan).'
+            };
+            document.getElementById('location').textContent =
+                messages[error.code] || 'Error tidak diketahui.';
+        }
+
+
+        /* ════════════════════════════════
+           LOGIKA DRAG & DROP
+           ════════════════════════════════ */
+
+        // 1. Saat element mulai di-drag
+        function drag(event) {
+            // Set data yang dibawa. Di sini kita bawa TEXT kontennya.
+            // Bisa juga bawa ID element: event.dataTransfer.setData("text", event.target.id);
+            event.dataTransfer.setData("text", event.target.textContent);
+
+            // Opsional: Ubah opacity biar terlihat sedang ditarik
+            event.target.style.opacity = "0.5";
+        }
+
+        // 2. Saat element berada di atas Drop Zone
+        function allowDrop(event) {
+            // Secara default, element tidak bisa di-drop di element lain.
+            // Kita harus preventDefault() untuk mengizinkan drop.
+            event.preventDefault();
+
+            // Visual feedback
+            event.target.classList.add('drag-over');
+        }
+
+        // 3. Saat element PERGI/KELUAR dari Drop Zone
+        function dragLeave(event) {
+            event.target.classList.remove('drag-over');
+        }
+
+        // 4. Saat element DILEPAS (Drop)
+        function drop(event) {
+            event.preventDefault(); // Mencegah browser buka link (jika yang didrag link)
+
+            // Ambil data yang dibawa tadi
+            const data = event.dataTransfer.getData("text");
+
+            // Ubah konten Drop Zone
+            event.target.textContent = `Sukses! Isinya: ${data}`;
+            event.target.style.backgroundColor = "#e0ffe0";
+            event.target.style.borderColor = "green";
+
+            // Bersihkan class hover
+            event.target.classList.remove('drag-over');
+
+            // Kembalikan opacity elemen asal (agak tricky kalau mau selector, anggap reset manual)
+            document.querySelector('.draggable').style.opacity = "1";
+        }
+    </script>
+
+</body>
+
+</html>
