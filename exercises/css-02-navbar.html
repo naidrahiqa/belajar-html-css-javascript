@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise: Navigation Bar</title>
+    <style>
+        /* 
+            EXERCISE: Style Navigation Bar
+            
+            INSTRUKSI:
+            1. Nav bar dengan background gelap
+            2. Logo di kiri, menu di kanan (flexbox)
+            3. Menu items horizontal dengan gap
+            4. Hover effect pada link (color & underline)
+            5. Sticky positioning (tetap di atas saat scroll)
+            
+            BONUS: Buat responsive (hamburger menu di mobile)
+        */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* SOLUSI */
+        /*
+        nav {
+            background: #333;
+            color: white;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+
+        .content {
+            height: 200vh;
+            padding: 50px;
+        }
+        */
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MyLogo</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>Scroll down to test sticky navbar</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+    </div>
+
+</body>
+
+</html>
