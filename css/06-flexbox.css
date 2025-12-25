@@ -1,0 +1,49 @@
+/* 
+    W3SCHOOLS: FLEXBOX
+    Cara paling efisien mengatur layout 1 dimensi.
+*/
+
+.flex-container {
+    display: flex;
+    background-color: DodgerBlue;
+
+    /* flex-direction: Mengatur arah utama */
+    flex-direction: row;
+    /* Default (Kiri->Kanan) */
+    /* column (Atas->Bawah), row-reverse, column-reverse */
+
+    /* flex-wrap: Apakah item boleh turun baris jika sempit? */
+    flex-wrap: wrap;
+    /* nowap (default) */
+
+    /* justify-content: Perataan Horizontal (Main Axis) */
+    justify-content: center;
+    /* center, flex-start, flex-end, space-between, space-around */
+
+    /* align-items: Perataan Vertikal (Cross Axis) */
+    align-items: center;
+    /* stretch, center, flex-start, flex-end */
+}
+
+.flex-container>div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+}
+
+/* Flex Item Properties */
+.flex-item {
+    /* order: urutan tampilan */
+    order: 1;
+
+    /* flex-grow: seberapa rela dia membesar mengisi ruang kosong */
+    flex-grow: 1;
+    /* Semua item sama rata */
+
+    /* flex-basis: panjang awal */
+    flex-basis: 200px;
+
+    /* Shorthand: grow shrink basis */
+    /* flex: 1 0 200px; */
+}
